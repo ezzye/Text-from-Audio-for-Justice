@@ -1,0 +1,29 @@
+Four ideas for markup
+Text:
+"Oh. And A A over the hills and far away, Teletubbies come to play. Oh, sh. Oh, hi. He attended a high end up in high tech company time. Come coming. The we. The wing. You see. Oh. Are you coming. We are we are. And where the Teletubbies gone and he can."
+
+Example1:
+<s|Oh! Hello. Over the hills and far away, Teletubbies come to play.>Oh. And A A over the hills and far away, Teletubbies come to play.</s>
+<s|> Oh, sh. Oh, hi. He attended a high end up in high tech company time. Come coming. The we. The wing. You see. Oh. Are you coming. We are we are. And where the Teletubbies gone and he can.</s>>
+
+Example2:
+<Oh! Hello. Over the hills and far away, Teletubbies come to play.|Oh. And A A over the hills and far away, Teletubbies come to play.>
+<Oh, sh. Oh, hi. He attended a high end up in high tech company time. Come coming. The we. The wing. You see. Oh. Are you coming. We are we are. And where the Teletubbies gone and he can.>
+
+Example3:
+<s | Oh! Hello. over >Oh. And A A over </>the hills and far away, Teletubbies come to play.
+
+Oh, sh. Oh, hi. He attended a high end up in high tech company time.
+
+Come coming. The we. The wing. You see. Oh. Are you coming.
+
+We are we are. And where the Teletubbies gone and he can."
+
+
+Example4:
+<Oh! Hello. >Oh. And A A </>over the hills and far away, Teletubbies come to play.|
+Oh, sh. Oh, hi. He attended a high end up in high tech company time.|
+Come coming. The we. The wing. You see. Oh. Are you coming.|
+We are we are. And where the Teletubbies gone and he can.
+
+
