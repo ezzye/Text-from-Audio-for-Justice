@@ -1,16 +1,25 @@
+Steps:
 
+1. read and verify kaldi_json_file
+read kaldi_json_file
+verify kaldi_json_file
 
-read kaldi json file (kaldi_json_file)
-verify kaldi_json_file Taj and make markup file -- use make file option
-manually markup aj markup file
-read Taj markup file (taj_markup_file)
-verify taj_markup_file and make chunk_info_file file and compile 'phrases to ffmpeg slice and concat instructions' -- use chunk option
+2. Manually make taj_file
+manually markup taj_file
+verify taj_file
+
+3. Use taj_file to make chunk_file
+read taj_file
+in taj_file and use text(ignore alternative_text_markup), markup and kaldi_json_file to calculate
 use ffmpeg atrim see https://ffmpeg.org/ffmpeg-filters.html#atrim
-ignore alternative_text_markup in taj_markup_file and use chunk_markup, text and kaldi_json_file to calculate
 the start and finish time_stamp for each chunk and name each chunk
-Save this information in chunk_info_file
-use chunk_info_file and ffmpeg to chunk recording and rename each chunk
-convert taj_markup_file with chunk names from chunk_info_file into text using alternative text with html links - use make document option
+Save this information in chunk_file
+
+4. Use chunk_file to make chunks
+use chunk_file and ffmpeg to chunk recording and rename each chunk
+
+5. Use taj_file and chunk_file to make html_file
+convert taj_file with chunk names from chunk_file into text using alternative text with html links
 
 
 
