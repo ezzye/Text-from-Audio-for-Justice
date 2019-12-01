@@ -21,5 +21,5 @@ use chunk_file and ffmpeg to chunk recording and rename each chunk
 5. Use taj_file and chunk_file to make html_file
 convert taj_file with chunk names from chunk_file into text using alternative text with html links
 
-
+Use explanation from https://superuser.com/questions/1229945/ffmpeg-split-video-and-merge-back
 
