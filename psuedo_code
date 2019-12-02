@@ -23,3 +23,12 @@ convert taj_file with chunk names from chunk_file into text using alternative te
 
 Use explanation from https://superuser.com/questions/1229945/ffmpeg-split-video-and-merge-back
 
+Minimum Viable Product
+
+As an accused person
+I want to be able to transcribe an audio recording
+In to a document with hyper text links per sentence/phrase
+To original audio clip
+That can be read and listened to online
+One sentence/phrase at a time
+
