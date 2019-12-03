@@ -1,0 +1,12 @@
+# to login
+$ docker login artifactory-noforge.virt.ch.bbc.co.uk:8443 \
+    --username=$API_USER \
+    --password=$API_KEY
+# to get artifact
+$ docker pull artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11
+# to run
+docker run --rm -i -t -v /Users/ellioe03/Workspace/Text-from-Audio-for-Justice/examples:/tmp/examples \
+    --name bbc-kaldi-container \
+    artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11 \
+    /bin/bash
+
