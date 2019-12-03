@@ -12,8 +12,7 @@ class TestChunkPhraseBuilder(unittest.TestCase):
         actual = builder.make_markup_file(transcription["punct"])
         self.assertEqual(actual, expected)
 
-
-def test_compile_chunk_phrase(self):
+    def test_compile_chunk_phrase(self):
         builder = ChunkPhraseBuilder()
         transcription = load_fixture('kaldi_small_doc.json')
         markedup_taj_file = builder.make_markup_file(transcription["punct"])
