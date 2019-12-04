@@ -1,3 +1,4 @@
+import datetime
 import re
 
 
@@ -24,3 +25,12 @@ class ChunkPhraseBuilder(object):
 
     def make_markup_file(self, punct_text):
         return re.sub(r"\.", ".|", punct_text)
+
+    def extract_markup_file(self, transciption):
+        d = datetime.datetime.now()
+        # filename = f'example{d:%f}'
+        filename = 'test'
+        path = f'fixtures/{filename}.taj'
+        with open(path, "x", encoding='utf-8') as fp:
+            fp.write(transciption['punct'])
+        return filename

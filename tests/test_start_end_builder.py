@@ -1,3 +1,4 @@
+import os
 import unittest
 
 from start_end_builder import ChunkPhraseBuilder
@@ -22,3 +23,17 @@ class TestChunkPhraseBuilder(unittest.TestCase):
         ]
         actual = builder.compile_chunk_phrases(transcription, markedup_taj_file)
         self.assertEqual(actual, expected)
+
+    def test_test_filename_created(self):
+        builder = ChunkPhraseBuilder()
+        transcription = load_fixture('transcription.json')
+        filename = builder.extract_markup_file(transcription)
+        path = f'fixtures/{filename}.taj'
+
+        self.assertTrue(os.path.exists(path))
+
+        if os.path.exists(path):
+            os.remove(path)
+        else:
+            print("File does not exist")
+
