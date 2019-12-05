@@ -1,56 +1,110 @@
+import os
 import unittest
-
 from builder import ChunkBuilder
 from exceptions import InputError
-from start_end_builder import ChunkPhraseBuilder
 from utils import load_document, load_fixture
 
 
 class TestChunkBuilder(unittest.TestCase):
 
-    def test_compile_timecodes(self):
+    def test_compile_ffmpeg_cli(self):
         builder = ChunkBuilder()
         chunk_phrases = [
             {'name': 'chunk1', 'start': 0.0, 'end': 5.21},
             {'name': 'chunk2', 'start': 5.21, 'end': 10.29},
             {'name': 'chunk3', 'start': 10.29, 'end': 40.20}
         ]
-        actual = builder.compile_ffmpeg_cli(chunk_phrases)
-        expected = (['0.0 -to 5.21 -c copy chunk1.mp3',
-                     '5.21 -to 10.29 -c copy chunk2.mp3',
-                     '10.29 -c copy chunk3.mp3'])
+        audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
+        audio_source = builder.convert_wav_to_mp3(audio_source_wav)
+        actual = builder.compile_ffmpeg_cli(chunk_phrases, audio_source)
+        expected = (['ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 0.0 -to 5.21 -c copy chunk1.mp3',
+                     'ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 5.21 -to 10.29 -c copy chunk2.mp3',
+                     'ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 10.29 -c copy chunk3.mp3'])
+        if os.path.exists(audio_source):
+            os.remove(audio_source)
+        else:
+            print("File does not exist")
         self.assertEqual(actual, expected)
 
-    def test_compile_timecodes_single(self):
+    def test_compile_ffmpeg_cli_single(self):
         builder = ChunkBuilder()
         chunk_phrases = [
             {'name': 'chunk1', 'start': 3.0, 'end': 5.21}
         ]
-        actual = builder.compile_ffmpeg_cli(chunk_phrases)
-        expected = (['3.0 -c copy chunk1.mp3'])
+        audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
+        audio_source = builder.convert_wav_to_mp3(audio_source_wav)
+        actual = builder.compile_ffmpeg_cli(chunk_phrases, audio_source)
+        expected = (['ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 3.0 -c copy chunk1.mp3'])
+        if os.path.exists(audio_source):
+            os.remove(audio_source)
+        else:
+            print("File does not exist")
         self.assertEqual(actual, expected)
 
-    def test_builder_for_mp3_file(self):
-        phrase_builder = ChunkPhraseBuilder()
+    def test_builder_for_using_split_markup(self):
         chunk_build = ChunkBuilder()
         audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
         audio_source = chunk_build.convert_wav_to_mp3(audio_source_wav)
-        print(f'audio_source: {audio_source}')
         markedup_taj_file = load_document('test2.taj')
-        print(f'markedup_taj_file: {markedup_taj_file}')
         transcription = load_fixture('transcription.json')
-        chunk_phrase = phrase_builder.compile_chunk_phrases(transcription, markedup_taj_file)
-        print(f'chunk_phrase: {chunk_phrase}')
-        time_code_and_outputs = chunk_build.compile_ffmpeg_cli(chunk_phrase)
-        print(f'time_code_and_outputs: {time_code_and_outputs}')
-        chunk_build.build(audio_source, time_code_and_outputs)
+        chunk_phrase = chunk_build.compile_chunk_phrases(transcription, markedup_taj_file)
+        time_code_and_outputs = chunk_build.compile_ffmpeg_cli(chunk_phrase, audio_source)
+        chunk_build.build(time_code_and_outputs)
+        test_files = [
+            audio_source,
+            'chunk1.mp3',
+            'chunk2.mp3',
+            'chunk3.mp3',
+            'chunk4.mp3'
+        ]
+        for test_file in test_files:
+            if os.path.exists(test_file):
+                os.remove(test_file)
+            else:
+                print("File does not exist")
 
-    def test_compile_timecodes_empty(self):
+    def test_make_markedup(self):
+        builder = ChunkBuilder()
+        transcription = load_fixture('kaldi_small_doc.json')
+        expected = "Oh.| And A A over"
+        actual = builder.make_markup_file(transcription["punct"])
+        self.assertEqual(actual, expected)
+
+    def test_compile_chunk_phrase(self):
+        builder = ChunkBuilder()
+        transcription = load_fixture('kaldi_small_doc.json')
+        markedup_taj_file = builder.make_markup_file(transcription["punct"])
+        expected = [
+            {'name': 'chunk1', 'start': 0.0, 'end': 1.13},
+            {'name': 'chunk2', 'start': 1.13, 'end': 21.7}
+        ]
+        actual = builder.compile_chunk_phrases(transcription, markedup_taj_file)
+        self.assertEqual(actual, expected)
+
+    def test_compile_chunk_phrase_bigger_file(self):
+        builder = ChunkBuilder()
+        transcription = load_fixture('transcription.json')
+        markedup_taj_file = load_document('test2.taj')
+        expected = [
+            {'name': 'chunk1', 'start': 0.1, 'end': 6.26},
+            {'name': 'chunk2', 'start': 6.66, 'end': 11.66},
+            {'name': 'chunk3', 'start': 11.76, 'end': 20.79},
+            {'name': 'chunk4', 'start': 21.01, 'end': 29.76}
+        ]
+        actual = builder.compile_chunk_phrases(transcription, markedup_taj_file)
+        self.assertEqual(actual, expected)
+
+    def test_compile_ffmpeg_cli_empty(self):
         builder = ChunkBuilder()
         chunk_phrases = []
+        audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
+        audio_source = builder.convert_wav_to_mp3(audio_source_wav)
         with self.assertRaises(InputError) as context:
-            builder.compile_ffmpeg_cli(chunk_phrases)
-            self.assertEqual('Something is wrong - chunk phrase list empty!',context.exception)
+            builder.compile_ffmpeg_cli(chunk_phrases, audio_source)
+        if os.path.exists(audio_source):
+            os.remove(audio_source)
+        else:
+            print("File does not exist")
 
     # Example ffmpeg commands
     # ffmpeg -i 20191130-2034_Test1.wav -vn -ar 44100 -ac 2 -b:a 192k test1.mp3
