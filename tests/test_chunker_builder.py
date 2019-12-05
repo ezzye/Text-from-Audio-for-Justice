@@ -2,6 +2,8 @@ import unittest
 
 from builder import ChunkBuilder
 from exceptions import InputError
+from start_end_builder import ChunkPhraseBuilder
+from utils import load_document, load_fixture
 
 
 class TestChunkBuilder(unittest.TestCase):
@@ -27,6 +29,21 @@ class TestChunkBuilder(unittest.TestCase):
         actual = builder.compile_ffmpeg_cli(chunk_phrases)
         expected = (['3.0 -c copy chunk1.mp3'])
         self.assertEqual(actual, expected)
+
+    def test_builder_for_mp3_file(self):
+        phrase_builder = ChunkPhraseBuilder()
+        chunk_build = ChunkBuilder()
+        audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
+        audio_source = chunk_build.convert_wav_to_mp3(audio_source_wav)
+        print(f'audio_source: {audio_source}')
+        markedup_taj_file = load_document('test2.taj')
+        print(f'markedup_taj_file: {markedup_taj_file}')
+        transcription = load_fixture('transcription.json')
+        chunk_phrase = phrase_builder.compile_chunk_phrases(transcription, markedup_taj_file)
+        print(f'chunk_phrase: {chunk_phrase}')
+        time_code_and_outputs = chunk_build.compile_ffmpeg_cli(chunk_phrase)
+        print(f'time_code_and_outputs: {time_code_and_outputs}')
+        chunk_build.build(audio_source, time_code_and_outputs)
 
     def test_compile_timecodes_empty(self):
         builder = ChunkBuilder()
