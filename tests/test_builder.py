@@ -94,6 +94,17 @@ class TestChunkBuilder(unittest.TestCase):
         actual = builder.compile_chunk_phrases(transcription, markedup_taj_file)
         self.assertEqual(actual, expected)
 
+    def test_create_markup_from_transcript(self):
+        builder = ChunkBuilder()
+        transcription = load_fixture('transcription.json')
+        filename = builder.extract_markup_file(transcription)
+        path = f'fixtures/{filename}.taj'
+        self.assertTrue(os.path.exists(path))
+        if os.path.exists(path):
+            os.remove(path)
+        else:
+            print("File does not exist")
+
     def test_compile_ffmpeg_cli_empty(self):
         builder = ChunkBuilder()
         chunk_phrases = []
