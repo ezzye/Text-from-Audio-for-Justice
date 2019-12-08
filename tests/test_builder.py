@@ -136,6 +136,25 @@ class TestChunkBuilder(unittest.TestCase):
         actual = load_file(path_man)
         self.assertEqual(actual, expected)
 
+    def test_mode_chunk(self):
+        builder = ChunkBuilder()
+        audio_path = 'fixtures/20191130-2034_Test1.wav'
+        transcript_path = 'fixtures/transcription.json'
+        markup_path = 'fixtures/test2.taj'
+        audio_output_path = 'fixtures/chunk'
+        expected_output_files = [
+            'fixtures/chunk1.mp3',
+            'fixtures/chunk2.mp3',
+            'fixtures/chunk3.mp3',
+            'fixtures/chunk4.mp3',
+        ]
+        for existing_file in expected_output_files:
+            if os.path.exists(existing_file):
+                os.remove(existing_file)
+        list_of_output_files = builder.chunk(audio_path, transcript_path, markup_path, audio_output_path)
+        self.assertEqual(list_of_output_files, expected_output_files)
+        for path in expected_output_files:
+            os.path.exists(path)
 
     # Example ffmpeg commands
     # ffmpeg -i 20191130-2034_Test1.wav -vn -ar 44100 -ac 2 -b:a 192k test1.mp3

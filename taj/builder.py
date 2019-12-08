@@ -10,7 +10,6 @@ class ChunkBuilder(object):
     def build(self, ffmpeg_cli):
         for ffmpeg_cli_item in ffmpeg_cli:
             options = shlex.split(ffmpeg_cli_item)
-            print(f'Options: {options}')
             subprocess.call(options)
 
     def make_markup(self, transcription_path, path_man, path_auto):
@@ -21,25 +20,34 @@ class ChunkBuilder(object):
             path = self.make_markup_file(transcript, path_auto)
         return path
 
+    def chunk(self,audio_path, transcript_path, markup_path, audio_output_path):
+        transcript = load_json(transcript_path)
+        markup_file = load_file(markup_path)
+        chunk_phrases = self.compile_chunk_phrases(transcript, markup_file, audio_output_path)
+        ffmpeg_cli_list = self.compile_ffmpeg_cli(chunk_phrases, audio_path)
+        list_of_output_files = []
+        for chunk_phrase in chunk_phrases:
+            list_of_output_files.append(f'{chunk_phrase["name"]}.mp3')
+        self.build(ffmpeg_cli_list)
+        return list_of_output_files
+
     def compile_ffmpeg_cli(self, chunk_phrases, audiofile):
         ffmpeg_cli = []
         if len(chunk_phrases) == 0:
             raise InputError('Something is wrong - chunk phrase list empty!')
-        print(f'chunk_phrases: {chunk_phrases}')
 
         for chunk_phrase in chunk_phrases:
             ffmpeg_cli.append(f'ffmpeg -i {audiofile} -ss {chunk_phrase["start"]} -to {chunk_phrase["end"]} -c copy {chunk_phrase["name"]}.mp3')
 
         ffmpeg_cli[-1] = f'ffmpeg -i {audiofile} -ss {chunk_phrases[-1]["start"]} -c copy {chunk_phrases[-1]["name"]}.mp3'
-        print(f'ffmpeg_cli: {ffmpeg_cli}')
         return ffmpeg_cli
 
-    def compile_chunk_phrases(self, transcription, markedup_taj_file):
+    def compile_chunk_phrases(self, transcription, markedup_taj_file, audio_output_path):
         chunk_list = markedup_taj_file.split('|')
         chunk_word_list = []
         words = transcription['words']
         word_count_end = 0
-        chunk_phrase = []
+        chunk_phrases = []
         for chunk in chunk_list:
             chunk_words = chunk.split()
             chunk_word_list.append(chunk_words)
@@ -48,8 +56,8 @@ class ChunkBuilder(object):
             word_count_end = word_count_start + len(chunk_word)
             start = words[word_count_start]['start']
             end = words[word_count_end-1]['end']
-            chunk_phrase.append({'name': f'chunk{index + 1}', 'start': start, 'end': end})
-        return chunk_phrase
+            chunk_phrases.append({'name': f'{audio_output_path}{index + 1}', 'start': start, 'end': end})
+        return chunk_phrases
 
     def make_markup_file(self, transcription, path):
         punct = transcription["punct"]
@@ -65,7 +73,6 @@ class ChunkBuilder(object):
 
     def convert_wav_to_mp3(self, wav_file):
         mp3_file = f'{wav_file.split(".")[0]}.mp3'
-        print(f'mp3 file: {mp3_file}')
         options = [
             'ffmpeg',
             '-i', wav_file,
@@ -76,7 +83,6 @@ class ChunkBuilder(object):
             '192k',
             mp3_file
         ]
-        print(options)
         subprocess.call(options)
         return f'{wav_file.split(".")[0]}.mp3'
 
