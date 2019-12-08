@@ -6,7 +6,7 @@ Takes an audio recording and transcribes it into text document so that an user c
 ### General Use
 ```bash
 usage: taj [-h] [--audio_output AUDIO_OUTPUT] [--validate] [--audio_output AUDIO_OUTPUT] 
-                [--audio_source AUDIO_SOURCE] [--transcript TRANSCRIPT] [--markup_file MARKUP_FILE]
+                [--audio_source AUDIO_SOURCE] [--transcript TRANSCRIPT] [--markup_file MARKUP_FILE] [--split_sentences MARKUP_FILE]
                 {transcribe, chunk, make_markup}
 
 positional arguments:
@@ -23,13 +23,15 @@ positional arguments:
 
   make_markup
         --markup_file           path of markup_file
+        --split_sentences       path of auto-generated markup split at sentences
 
 optional arguments:
   -h, --help                            show this help message and exit
   -v, --validate                        validate created transcript before building audio chunks
   -o, --audio_output AUDIO_OUTPUT       output path for chunk files
   -d, --doc_output WORD_DOC_OUTPUT      output path for MS Word file
-  -s, --audio_source AUDIO_SOURCE       path to the audio file to chunk. Must have  either mp3 or wav extension
+  -s, --audio_source AUDIO_SOURCE       input path to the audio file to chunk. Must have  either mp3 or wav extension
   -t, --transcript TRANSCRIPT           input path of Kaldi transcript file
-  -m, --markup_file MARKUP_FILE         input path of taj markup file
+  -m, --markup_file MARKUP_FILE         output path of taj markup file
+  -n, --split_sentences MARKUP_FILE     output path of auto-generated markup split at sentences
 ```

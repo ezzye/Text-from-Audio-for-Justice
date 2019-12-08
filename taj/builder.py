@@ -3,6 +3,7 @@ import subprocess
 import re
 
 from exceptions import InputError
+from taj import load_file, load_json
 
 
 class ChunkBuilder(object):
@@ -11,6 +12,14 @@ class ChunkBuilder(object):
             options = shlex.split(ffmpeg_cli_item)
             print(f'Options: {options}')
             subprocess.call(options)
+
+    def make_markup(self, transcription_path, path_man, path_auto):
+        transcript = load_json(transcription_path)
+        if path_auto == '':
+            path = self.extract_markup_file(transcript, path_man)
+        else:
+            path = self.make_markup_file(transcript, path_auto)
+        return path
 
     def compile_ffmpeg_cli(self, chunk_phrases, audiofile):
         ffmpeg_cli = []
@@ -42,15 +51,17 @@ class ChunkBuilder(object):
             chunk_phrase.append({'name': f'chunk{index + 1}', 'start': start, 'end': end})
         return chunk_phrase
 
-    def make_markup_file(self, punct_text):
-        return re.sub(r"\.", ".|", punct_text)
+    def make_markup_file(self, transcription, path):
+        punct = transcription["punct"]
+        markup = re.sub(r"\.", ".|", punct )
+        with open(path, "w", encoding='utf-8') as fp:
+            fp.write(markup)
+        return path
 
-    def extract_markup_file(self, transciption):
-        filename = 'test'
-        path = f'fixtures/{filename}.taj'
-        with open(path, "x", encoding='utf-8') as fp:
-            fp.write(transciption['punct'])
-        return filename
+    def extract_markup_file(self, transcription, path):
+        with open(path, "w", encoding='utf-8') as fp:
+            fp.write(transcription['punct'])
+        return path
 
     def convert_wav_to_mp3(self, wav_file):
         mp3_file = f'{wav_file.split(".")[0]}.mp3'

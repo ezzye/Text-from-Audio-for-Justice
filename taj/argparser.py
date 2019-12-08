@@ -23,8 +23,14 @@ def parse_args():
         '--markup_file',
         '-m',
         type=str,
-        help='input path of taj markup file',
+        help='output path of taj markup file',
         default='input/markup_file.taj')
+    parser.add_argument(
+        '--split_sentences',
+        '-n',
+        type=str,
+        help='output path of taj markup file',
+        default='')
     parser.add_argument(
         '--audio_output',
         '-o',

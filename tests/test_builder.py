@@ -2,6 +2,7 @@ import os
 import unittest
 from builder import ChunkBuilder
 from exceptions import InputError
+from taj import load_file, load_json
 from utils import load_document, load_fixture
 
 
@@ -63,12 +64,23 @@ class TestChunkBuilder(unittest.TestCase):
             else:
                 print("File does not exist")
 
-    def test_make_markedup(self):
+    def test_auto_make_markedup(self):
         builder = ChunkBuilder()
         transcription = load_fixture('kaldi_small_doc.json')
         expected = "Oh.| And A A over"
-        actual = builder.make_markup_file(transcription["punct"])
+        path = 'fixtures/auto_markup.taj'
+        builder.make_markup_file(transcription, path)
+        self.assertTrue(os.path.exists(path))
+        actual = load_file(path)
         self.assertEqual(actual, expected)
+
+    def test_extract_markup_from_transcript(self):
+        builder = ChunkBuilder()
+        transcription = load_fixture('transcription.json')
+        path = 'fixtures/extracted_markup.taj'
+        path = builder.extract_markup_file(transcription, path)
+        self.assertTrue(os.path.exists(path))
+
 
     def test_compile_chunk_phrase(self):
         builder = ChunkBuilder()
@@ -94,17 +106,6 @@ class TestChunkBuilder(unittest.TestCase):
         actual = builder.compile_chunk_phrases(transcription, markedup_taj_file)
         self.assertEqual(actual, expected)
 
-    def test_create_markup_from_transcript(self):
-        builder = ChunkBuilder()
-        transcription = load_fixture('transcription.json')
-        filename = builder.extract_markup_file(transcription)
-        path = f'fixtures/{filename}.taj'
-        self.assertTrue(os.path.exists(path))
-        if os.path.exists(path):
-            os.remove(path)
-        else:
-            print("File does not exist")
-
     def test_compile_ffmpeg_cli_empty(self):
         builder = ChunkBuilder()
         chunk_phrases = []
@@ -116,6 +117,25 @@ class TestChunkBuilder(unittest.TestCase):
             os.remove(audio_source)
         else:
             print("File does not exist")
+
+    def test_mode_auto_markup_man(self):
+        builder = ChunkBuilder()
+        path_man = ''
+        path_auto = 'fixtures/markup_test.taj'
+        builder.make_markup('fixtures/kaldi_small_doc.json', path_man, path_auto)
+        expected = "Oh.| And A A over"
+        actual = load_file(path_auto)
+        self.assertEqual(actual, expected)
+
+    def test_mode_extract_markup_auto(self):
+        builder = ChunkBuilder()
+        path_man = 'fixtures/markup_test2.taj'
+        path_auto = ''
+        builder.make_markup('fixtures/kaldi_small_doc.json', path_man, path_auto)
+        expected = "Oh. And A A over"
+        actual = load_file(path_man)
+        self.assertEqual(actual, expected)
+
 
     # Example ffmpeg commands
     # ffmpeg -i 20191130-2034_Test1.wav -vn -ar 44100 -ac 2 -b:a 192k test1.mp3
