@@ -5,26 +5,38 @@ def parse_args():
     parser = argparse.ArgumentParser('taj')
     parser.add_argument('mode',
                         type=str,
-                        choices=('transcribe', 'chunk', 'make_markup'),
+                        choices=('transcribe', 'chunk', 'make_markup', 'word'),
                         help='the mode of operation: \n\t{\'transcribe\', \'chunk\', \'make_markup\'}')
     parser.add_argument(
         '--audio_source',
         '-s',
         type=str,
         help='path to the audio file to chunk. Must have  either mp3 or wav extension',
-        default='input/audio.wav')
+        default='audio.wav')
+    parser.add_argument(
+        '--audio_output_chunks',
+        '-s',
+        type=str,
+        help='path to name of output chunks',
+        default='chunk')
+    parser.add_argument(
+        '--word_output_file',
+        '-s',
+        type=str,
+        help='path of word output file',
+        default='document.docx')
     parser.add_argument(
         '--transcript',
         '-t',
         type=str,
         help='path of Kaldi json transcript file',
-        default='input/transcription.json')
+        default='transcription.json')
     parser.add_argument(
         '--markup_file',
         '-m',
         type=str,
         help='output path of taj markup file',
-        default='input/markup_file.taj')
+        default='markup_file.taj')
     parser.add_argument(
         '--split_sentences',
         '-n',
@@ -36,13 +48,13 @@ def parse_args():
         '-o',
         type=str,
         help='output path for chunk files',
-        default='output/chunk')
+        default='chunk')
     parser.add_argument(
         '--doc_output',
         '-d',
         type=str,
         help='output path for MS Word file',
-        default='output/output.doc')
+        default='output.doc')
     parser.add_argument(
         '--validate',
         '-v',

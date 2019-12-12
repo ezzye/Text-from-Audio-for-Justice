@@ -1,12 +1,21 @@
 import os
 import unittest
-from builder import ChunkBuilder
+from builder import ChunkBuilder, load_file, load_json
 from exceptions import InputError
-from taj import load_file, load_json
 from utils import load_document, load_fixture
 
 
 class TestChunkBuilder(unittest.TestCase):
+
+    def test_transcribe(self):
+        builder = ChunkBuilder()
+        audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
+        doc_output = 'fixtures/result'
+        transcription_path = builder.transcribe_audio(audio_source_wav, doc_output)
+        actual = load_json(transcription_path)
+        expected = load_json('fixtures/transcription.json')
+        self.assertEqual(actual["punct"], expected["punct"])
+
 
     def test_compile_ffmpeg_cli(self):
         builder = ChunkBuilder()
@@ -40,29 +49,31 @@ class TestChunkBuilder(unittest.TestCase):
             os.remove(audio_source)
         else:
             print("File does not exist")
-        self.assertEqual(actual, expected)
 
     def test_builder_for_using_split_markup(self):
         chunk_build = ChunkBuilder()
+        audio_output_path = 'fixtures/audio_output_chunk'
         audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
         audio_source = chunk_build.convert_wav_to_mp3(audio_source_wav)
-        markedup_taj_file = load_document('test2.taj')
-        transcription = load_fixture('transcription.json')
-        chunk_phrase = chunk_build.compile_chunk_phrases(transcription, markedup_taj_file)
-        time_code_and_outputs = chunk_build.compile_ffmpeg_cli(chunk_phrase, audio_source)
-        chunk_build.build(time_code_and_outputs)
+
         test_files = [
             audio_source,
-            'chunk1.mp3',
-            'chunk2.mp3',
-            'chunk3.mp3',
-            'chunk4.mp3'
+            f'{audio_output_path}1.mp3',
+            f'{audio_output_path}2.mp3',
+            f'{audio_output_path}3.mp3',
+            f'{audio_output_path}4.mp3'
         ]
         for test_file in test_files:
             if os.path.exists(test_file):
                 os.remove(test_file)
             else:
                 print("File does not exist")
+
+        markedup_taj_file = load_document('test2.taj')
+        transcription = load_fixture('transcription.json')
+        chunk_phrase = chunk_build.compile_chunk_phrases(transcription, markedup_taj_file, audio_output_path)
+        time_code_and_outputs = chunk_build.compile_ffmpeg_cli(chunk_phrase, audio_source)
+        chunk_build.build(time_code_and_outputs)
 
     def test_auto_make_markedup(self):
         builder = ChunkBuilder()
@@ -81,29 +92,28 @@ class TestChunkBuilder(unittest.TestCase):
         path = builder.extract_markup_file(transcription, path)
         self.assertTrue(os.path.exists(path))
 
-
     def test_compile_chunk_phrase(self):
         builder = ChunkBuilder()
         transcription = load_fixture('kaldi_small_doc.json')
-        markedup_taj_file = builder.make_markup_file(transcription["punct"])
-        expected = [
-            {'name': 'chunk1', 'start': 0.0, 'end': 1.13},
-            {'name': 'chunk2', 'start': 1.13, 'end': 21.7}
-        ]
-        actual = builder.compile_chunk_phrases(transcription, markedup_taj_file)
+        path = 'fixtures/test_markup.taj'
+        markedup_taj_file = builder.make_markup_file(transcription, path)
+        audio_output_path = 'fixtures/chunk_test'
+        expected = [{'end': 1.13, 'name': 'fixtures/chunk_test1', 'start': 0.0}]
+        actual = builder.compile_chunk_phrases(transcription, markedup_taj_file, audio_output_path)
         self.assertEqual(actual, expected)
 
     def test_compile_chunk_phrase_bigger_file(self):
         builder = ChunkBuilder()
         transcription = load_fixture('transcription.json')
         markedup_taj_file = load_document('test2.taj')
+        audio_output_path = 'fixtures/chunk'
         expected = [
-            {'name': 'chunk1', 'start': 0.1, 'end': 6.26},
-            {'name': 'chunk2', 'start': 6.66, 'end': 11.66},
-            {'name': 'chunk3', 'start': 11.76, 'end': 20.79},
-            {'name': 'chunk4', 'start': 21.01, 'end': 29.76}
+            {'end': 6.26, 'name': 'fixtures/chunk1', 'start': 0.1},
+            {'end': 11.66, 'name': 'fixtures/chunk2', 'start': 6.66},
+            {'end': 20.79, 'name': 'fixtures/chunk3', 'start': 11.76},
+            {'end': 29.76, 'name': 'fixtures/chunk4', 'start': 21.01}
         ]
-        actual = builder.compile_chunk_phrases(transcription, markedup_taj_file)
+        actual = builder.compile_chunk_phrases(transcription, markedup_taj_file, audio_output_path)
         self.assertEqual(actual, expected)
 
     def test_compile_ffmpeg_cli_empty(self):

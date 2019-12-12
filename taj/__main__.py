@@ -1,13 +1,13 @@
 from builder import ChunkBuilder
 from exceptions import InputError
-from taj.argparser import parse_args
+from argparser import parse_args
 
 
 def main():
     args = parse_args()
     builder = ChunkBuilder()
     try:
-        pass
+        builder.compose(args.mode, args.transcript, args.audio_source, args.markup_file, args.split_sentences, args.audio_output, args.doc_output, args.validate)
     except InputError as e:
         print(f'{InputError.__name__}:\n\t{e}')
 

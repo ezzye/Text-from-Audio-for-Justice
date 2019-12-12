@@ -1,0 +1,7 @@
+# fgmm-global-to-gmm /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/vad/full_ubm_noise//final.ubm /tmp/media/fixtures/result/vad/vad_gmm/full_ubm_noise_final.dubm 
+# Started at Thu Dec 12 11:36:34 UTC 2019
+#
+fgmm-global-to-gmm /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/vad/full_ubm_noise//final.ubm /tmp/media/fixtures/result/vad/vad_gmm/full_ubm_noise_final.dubm 
+LOG (fgmm-global-to-gmm[5.4.168~1403-5a647]:main():fgmm-global-to-gmm.cc:58) Written diagonal GMM to /tmp/media/fixtures/result/vad/vad_gmm/full_ubm_noise_final.dubm
+# Accounting: time=0 threads=1
+# Ended (code 0) at Thu Dec 12 11:36:34 UTC 2019, elapsed time 0 seconds
