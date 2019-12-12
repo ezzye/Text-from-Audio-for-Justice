@@ -14,7 +14,7 @@ positional arguments:
 
   transcribe
         --audio_source          path of audio to process
-        --doc_output            path for MS Word file
+        --transcription_output  path for transcription file output
 
   word
         --markup_file           path of markup_file
@@ -32,14 +32,14 @@ positional arguments:
         --split_sentences       path of auto-generated markup split at sentences
 
 optional arguments:
-  -h, --help                            show this help message and exit
-  -v, --validate                        validate created transcript before building audio chunks
-  -o, --audio_output AUDIO_OUTPUT       output path for chunk files
-  -d, --doc_output WORD_DOC_OUTPUT      output path for MS Word file
-  -s, --audio_source AUDIO_SOURCE       input path to the audio file to chunk. Must have  either mp3 or wav extension
-  -t, --transcript TRANSCRIPT           input path of Kaldi transcript file
-  -m, --markup_file MARKUP_FILE         output path of taj markup file
-  -n, --split_sentences MARKUP_FILE     output path of auto-generated markup split at sentences
-  -c, --audio_output_chunks CHUNK_NAME  path to name of output chunks
-  -w, --word_output_file WORD_OUTPUT    path of word output file
+  -h, --help                                show this help message and exit
+  -v, --validate                            validate created transcript before building audio chunks
+  -o, --audio_output AUDIO_OUTPUT           output path for chunk files
+  -d, --transcription_output TRANS_OUTPUT      output path for MS Word file
+  -s, --audio_source AUDIO_SOURCE           input path to the audio file to chunk. Must have  either mp3 or wav extension
+  -t, --transcript TRANSCRIPT               input path of Kaldi transcript file
+  -m, --markup_file MARKUP_FILE             output path of taj markup file
+  -n, --split_sentences MARKUP_FILE         output path of auto-generated markup split at sentences
+  -c, --audio_output_chunks CHUNK_NAME      path to name of output chunks
+  -w, --word_output_file WORD_OUTPUT        path of word output file
 ```

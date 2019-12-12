@@ -8,12 +8,14 @@ from exceptions import InputError
 
 
 class ChunkBuilder(object):
-    def compose(self, mode, transcript, audio_source, markup_file, split_sentences, audio_output, doc_output, validate):
+    def compose(self, mode, transcript, audio_source, markup_file, split_sentences, audio_output, transcription_output, validate, audio_output_chunks, word_output_file):
         if mode == 'make_markup':
             self.make_markup(transcript, markup_file, split_sentences)
         if mode == 'chunk':
             self.chunk(audio_source, transcript, markup_file, audio_output)
         if mode == 'transcribe':
+            self.transcribe_audio(self, audio_source, transcription_output)
+        if mode == 'word':
             pass
 
     def build(self, ffmpeg_cli):
@@ -80,7 +82,7 @@ class ChunkBuilder(object):
         print(f'chunk_phrases: {chunk_phrases}')
         return chunk_phrases
 
-    def transcribe_audio(self, audio_source, doc_output):
+    def transcribe_audio(self, audio_source, transcription_output):
         current_working_dir = os.getcwd()
         audio_file_name = audio_source.split("/")[-1].split(".")[0]
         print(f'before conversion: {audio_source}')
@@ -89,10 +91,10 @@ class ChunkBuilder(object):
         print(f'after conversion: {audio_source}')
         if audio_source.split('.')[-1] != 'mp3':
             raise Exception("OMG! The input audio file needs to be in wav or mp3 format.")
-        instruction = f'docker run --rm  -v "{current_working_dir}:/tmp/media" --name bbc-kaldi-container  artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11 bbc-kaldi /tmp/media/{audio_source} /tmp/media/{doc_output}'
+        instruction = f'docker run --rm  -v "{current_working_dir}:/tmp/media" --name bbc-kaldi-container  artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11 bbc-kaldi /tmp/media/{audio_source} /tmp/media/{transcription_output}'
         options = shlex.split(instruction)
         subprocess.call(options)
-        return f'{doc_output}/results/{audio_file_name}/transcription.json'
+        return f'{transcription_output}/results/{audio_file_name}/transcription.json'
 
     # docker run --rm  -v "/Users/MyLaptop/Media:/tmp/media" \
     #     --name bbc-kaldi-container  artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11 bbc-kaldi \

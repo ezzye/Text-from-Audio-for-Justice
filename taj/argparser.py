@@ -26,6 +26,12 @@ def parse_args():
         help='path of word output file',
         default='document.docx')
     parser.add_argument(
+        '--transcription_output',
+        '-s',
+        type=str,
+        help='path of transcription output file',
+        default='transcription.json')
+    parser.add_argument(
         '--transcript',
         '-t',
         type=str,
