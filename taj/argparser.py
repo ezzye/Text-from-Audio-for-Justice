@@ -26,6 +26,12 @@ def parse_args():
         help='path of word output file',
         default='document.docx')
     parser.add_argument(
+        '--online_folder',
+        '-s',
+        type=str,
+        help='http url of folder of audio_files',
+        default='')
+    parser.add_argument(
         '--transcription_output',
         '-s',
         type=str,
@@ -37,6 +43,7 @@ def parse_args():
         type=str,
         help='path of Kaldi json transcript file',
         default='transcription.json')
+    # duplicate argument
     parser.add_argument(
         '--markup_file',
         '-m',

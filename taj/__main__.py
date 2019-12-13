@@ -7,7 +7,10 @@ def main():
     args = parse_args()
     builder = ChunkBuilder()
     try:
-        builder.compose(args.mode, args.transcript, args.audio_source, args.markup_file, args.split_sentences, args.audio_output, args.doc_output, args.validate, args.audio_output_chunks, args.word_output_file)
+        builder.compose(args.mode, args.transcript, args.audio_source,
+                        args.markup_file, args.split_sentences, args.audio_output,
+                        args.doc_output, args.validate, args.audio_output_chunks,
+                        args.word_output_file, online_folder)
     except InputError as e:
         print(f'{InputError.__name__}:\n\t{e}')
 

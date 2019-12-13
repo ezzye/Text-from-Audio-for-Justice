@@ -6,7 +6,7 @@ Takes an audio recording and transcribes it into text document so that an user c
 ### General Use
 ```bash
 usage: taj [-h] [--audio_output AUDIO_OUTPUT] [--validate] [--audio_output AUDIO_OUTPUT] 
-                [--audio_source AUDIO_SOURCE] [--transcript TRANSCRIPT] [--markup_file MARKUP_FILE] [--split_sentences MARKUP_FILE]
+                [--audio_source AUDIO_SOURCE] [--transcript TRANSCRIPT] [--markup_file MARKUP_FILE] [--split_sentences MARKUP_FILE] etc
                 {transcribe, chunk, make_markup, word}
 
 positional arguments:
@@ -20,6 +20,7 @@ positional arguments:
         --markup_file           path of markup_file
         --audio_output_chunks   path to name of output chunks
         --word_output_file      path of word output file
+        --online_folder         http url of folder of audio_files
   
   chunk
         --audio_source          path of audio to process
@@ -42,4 +43,5 @@ optional arguments:
   -n, --split_sentences MARKUP_FILE         output path of auto-generated markup split at sentences
   -c, --audio_output_chunks CHUNK_NAME      path to name of output chunks
   -w, --word_output_file WORD_OUTPUT        path of word output file
+  -f, --online_folder                       http url of folder of audio_files
 ```

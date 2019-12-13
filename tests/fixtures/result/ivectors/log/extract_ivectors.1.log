@@ -1,5 +1,5 @@
 # ivector-extract-online2 --config=/tmp/media/fixtures/result/ivectors/conf/ivector_extractor.conf ark:/tmp/media/fixtures/result/split1/1/spk2utt scp:/tmp/media/fixtures/result/split1/1/feats.scp ark:- | copy-feats --compress=true ark:- ark,scp:/tmp/media/fixtures/result/ivectors/ivector_online.1.ark,/tmp/media/fixtures/result/ivectors/ivector_online.1.scp 
-# Started at Thu Dec 12 11:36:51 UTC 2019
+# Started at Thu Dec 12 17:07:36 UTC 2019
 #
 copy-feats --compress=true ark:- ark,scp:/tmp/media/fixtures/result/ivectors/ivector_online.1.ark,/tmp/media/fixtures/result/ivectors/ivector_online.1.scp 
 ivector-extract-online2 --config=/tmp/media/fixtures/result/ivectors/conf/ivector_extractor.conf ark:/tmp/media/fixtures/result/split1/1/spk2utt scp:/tmp/media/fixtures/result/split1/1/feats.scp ark:- 
@@ -9,5 +9,5 @@ LOG (ivector-extract-online2[5.4.168~1403-5a647]:main():ivector-extract-online2.
 LOG (ivector-extract-online2[5.4.168~1403-5a647]:main():ivector-extract-online2.cc:145) Average objective-function improvement was 28.0488 per frame, over 2956 frames (weighted).
 LOG (ivector-extract-online2[5.4.168~1403-5a647]:main():ivector-extract-online2.cc:148) Average iVector length was 12.4485 and at utterance-end was 14.4272, over 2956 frames (weighted);  expected length is 10
 LOG (copy-feats[5.4.168~1403-5a647]:main():copy-feats.cc:143) Copied 2 feature matrices.
-# Accounting: time=0 threads=1
-# Ended (code 0) at Thu Dec 12 11:36:51 UTC 2019, elapsed time 0 seconds
+# Accounting: time=1 threads=1
+# Ended (code 0) at Thu Dec 12 17:07:37 UTC 2019, elapsed time 1 seconds

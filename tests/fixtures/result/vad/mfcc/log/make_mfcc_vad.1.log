@@ -1,10 +1,10 @@
 # compute-mfcc-feats --verbose=2 --config=/usr/share/bbc-kaldi/bbc-kaldi-recipe/vad/conf/mfcc.conf scp,p:/tmp/media/fixtures/result/vad/mfcc/log/wav_vad.1.scp ark:- | copy-feats --compress=true ark:- ark,scp:/tmp/media/fixtures/result/vad/mfcc/raw_mfcc_vad.1.ark,/tmp/media/fixtures/result/vad/mfcc/raw_mfcc_vad.1.scp 
-# Started at Thu Dec 12 11:36:33 UTC 2019
+# Started at Thu Dec 12 17:07:19 UTC 2019
 #
 copy-feats --compress=true ark:- ark,scp:/tmp/media/fixtures/result/vad/mfcc/raw_mfcc_vad.1.ark,/tmp/media/fixtures/result/vad/mfcc/raw_mfcc_vad.1.scp 
 compute-mfcc-feats --verbose=2 --config=/usr/share/bbc-kaldi/bbc-kaldi-recipe/vad/conf/mfcc.conf scp,p:/tmp/media/fixtures/result/vad/mfcc/log/wav_vad.1.scp ark:- 
 VLOG[2] (compute-mfcc-feats[5.4.168~1403-5a647]:main():compute-mfcc-feats.cc:173) Processed features for key 20191130-2034_Test1
 LOG (compute-mfcc-feats[5.4.168~1403-5a647]:main():compute-mfcc-feats.cc:176)  Done 1 out of 1 utterances.
 LOG (copy-feats[5.4.168~1403-5a647]:main():copy-feats.cc:143) Copied 1 feature matrices.
-# Accounting: time=0 threads=1
-# Ended (code 0) at Thu Dec 12 11:36:33 UTC 2019, elapsed time 0 seconds
+# Accounting: time=1 threads=1
+# Ended (code 0) at Thu Dec 12 17:07:20 UTC 2019, elapsed time 1 seconds

@@ -7,6 +7,7 @@ from utils import load_document, load_fixture
 
 class TestChunkBuilder(unittest.TestCase):
 
+    # Takes a long time to run ****************************************************
     def test_transcribe(self):
         builder = ChunkBuilder()
         audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
@@ -15,6 +16,16 @@ class TestChunkBuilder(unittest.TestCase):
         actual = load_json(transcription_path)
         expected = load_json('fixtures/transcription.json')
         self.assertEqual(actual["punct"], expected["punct"])
+
+    def test_word(self):
+        builder = ChunkBuilder()
+        audio_output_chunks = 'fixtures/chunk'
+        word_output_file = 'fixtures/test_document.docx'
+        online_folder = 'https://audiotestexample.s3-eu-west-1.amazonaws.com/test1'
+        markup_file = 'fixtures/test2.taj'
+        word_document_path = builder.word(audio_output_chunks, word_output_file, online_folder, markup_file)
+
+
 
 
     def test_compile_ffmpeg_cli(self):
@@ -27,13 +38,13 @@ class TestChunkBuilder(unittest.TestCase):
         audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
         audio_source = builder.convert_wav_to_mp3(audio_source_wav)
         actual = builder.compile_ffmpeg_cli(chunk_phrases, audio_source)
-        expected = (['ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 0.0 -to 5.21 -c copy chunk1.mp3',
-                     'ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 5.21 -to 10.29 -c copy chunk2.mp3',
-                     'ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 10.29 -c copy chunk3.mp3'])
-        if os.path.exists(audio_source):
-            os.remove(audio_source)
-        else:
-            print("File does not exist")
+        expected = (['ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 0.0 -to 5.21 -c copy -y chunk1.mp3',
+                     'ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 5.21 -to 10.29 -c copy -y chunk2.mp3',
+                     'ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 10.29 -c copy -y chunk3.mp3'])
+        # if os.path.exists(audio_source):
+        #     os.remove(audio_source)
+        # else:
+        #     print("File does not exist")
         self.assertEqual(actual, expected)
 
     def test_compile_ffmpeg_cli_single(self):
@@ -45,10 +56,10 @@ class TestChunkBuilder(unittest.TestCase):
         audio_source = builder.convert_wav_to_mp3(audio_source_wav)
         actual = builder.compile_ffmpeg_cli(chunk_phrases, audio_source)
         expected = (['ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 3.0 -c copy chunk1.mp3'])
-        if os.path.exists(audio_source):
-            os.remove(audio_source)
-        else:
-            print("File does not exist")
+        # if os.path.exists(audio_source):
+        #     os.remove(audio_source)
+        # else:
+        #     print("File does not exist")
 
     def test_builder_for_using_split_markup(self):
         chunk_build = ChunkBuilder()
@@ -63,11 +74,11 @@ class TestChunkBuilder(unittest.TestCase):
             f'{audio_output_path}3.mp3',
             f'{audio_output_path}4.mp3'
         ]
-        for test_file in test_files:
-            if os.path.exists(test_file):
-                os.remove(test_file)
-            else:
-                print("File does not exist")
+        # for test_file in test_files:
+        #     if os.path.exists(test_file):
+        #         os.remove(test_file)
+        #     else:
+        #         print("File does not exist")
 
         markedup_taj_file = load_document('test2.taj')
         transcription = load_fixture('transcription.json')
