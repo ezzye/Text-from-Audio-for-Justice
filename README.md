@@ -45,3 +45,7 @@ optional arguments:
   -w, --word_output_file WORD_OUTPUT        path of word output file
   -f, --online_folder                       http url of folder of audio_files
 ```
+
+The word document produced is in an old format, MS Word can open it but it needs to be converteted to read in google.
+Use [cloud convert](https://cloudconvert.com/) in 'open with' to convert to google docs.
+To format hyperlinks in Google Docs use add-on [Link Style from G Suite Marketplace](https://gsuite.google.com/marketplace/app/link_style/430151409905?pann=cwsdp&hl=en-GB)

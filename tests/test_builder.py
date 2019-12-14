@@ -20,10 +20,10 @@ class TestChunkBuilder(unittest.TestCase):
     def test_word(self):
         builder = ChunkBuilder()
         audio_output_chunks = 'fixtures/chunk'
-        word_output_file = 'fixtures/test_document.docx'
-        online_folder = 'https://audiotestexample.s3-eu-west-1.amazonaws.com/test1'
+        word_output_file = 'fixtures/test_document2.doc'
+        online_folder = 'https://audiotestexample.s3-eu-west-1.amazonaws.com/test1/'
         markup_file = 'fixtures/test2.taj'
-        word_document_path = builder.word(audio_output_chunks, word_output_file, online_folder, markup_file)
+        document = builder.word(audio_output_chunks, word_output_file, online_folder, markup_file)
 
 
 

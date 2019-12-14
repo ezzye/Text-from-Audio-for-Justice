@@ -3,20 +3,37 @@ import subprocess
 import re
 import json
 import os
-
-import docx as docx
-from docx.enum.dml import MSO_THEME_COLOR_INDEX
-
+import docx
 from exceptions import InputError
 
 
 def add_hyperlink(paragraph, text, url):
+    """
+    :param paragraph: The paragraph we are adding the hyperlink to.
+    :param url: A string containing the required url
+    :param text: The text displayed for the url
+    :return: The hyperlink object
+    """
+    # This gets access to the document.xml.rels file and gets a new relation id value
     part = paragraph.part
     r_id = part.relate_to(url, docx.opc.constants.RELATIONSHIP_TYPE.HYPERLINK, is_external=True)
+    # Create the w:hyperlink tag and add needed values
     hyperlink = docx.oxml.shared.OxmlElement('w:hyperlink')
     hyperlink.set(docx.oxml.shared.qn('r:id'), r_id, )
+    # Create a w:r element and a new w:rPr element
     new_run = docx.oxml.shared.OxmlElement('w:r')
     rPr = docx.oxml.shared.OxmlElement('w:rPr')
+    # Join all the xml elements together add add the required text to the w:r element
+    new_run.append(rPr)
+    new_run.text = text
+    hyperlink.append(new_run)
+    # Create a new Run object and add the hyperlink into it
+    r = paragraph.add_run()
+    r._r.append(hyperlink)
+    return hyperlink
+
+
+
 
 
 class ChunkBuilder(object):
@@ -40,10 +57,13 @@ class ChunkBuilder(object):
 
     def word(self, audio_output_chunks, word_output_file, online_folder, markup_file):
         document = docx.Document()
-        for index, phrase in enumerate(markup_file.split("|")):
-            p = document.add_paragraph('A plain paragraph having some ')
-            add_hyperlink(p, 'Link to my site', "http://supersitedelamortquitue.fr")
-            document.save('demo_hyperlink.docx')
+        name_of_chunk = audio_output_chunks.split("/")[-1]
+        markup_file_text = load_file(markup_file)
+        for index, phrase in enumerate(markup_file_text.split("|")):
+            p = document.add_paragraph(phrase)
+            add_hyperlink(p, f'[{index + 1}]  ', f'{online_folder}{name_of_chunk}{index + 1}.mp3')
+        document.save(word_output_file)
+        return document
 
     def make_markup(self, transcription_path, path_man, path_auto):
         transcript = load_json(transcription_path)
