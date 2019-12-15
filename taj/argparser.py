@@ -5,8 +5,8 @@ def parse_args():
     parser = argparse.ArgumentParser('taj')
     parser.add_argument('mode',
                         type=str,
-                        choices=('transcribe', 'chunk', 'make_markup', 'word'),
-                        help='the mode of operation: \n\t{\'transcribe\', \'chunk\', \'make_markup\'}')
+                        choices=('batch', 'transcribe', 'chunk', 'make_markup', 'word'),
+                        help='the mode of operation: \n\t{\'batch\', \'transcribe\', \'chunk\', \'make_markup\', \'batch\'}')
     parser.add_argument(
         '--audio_source',
         '-s',
@@ -75,5 +75,3 @@ def parse_args():
         help='validate created transcript before building audio chunks',
         default=False)
     return parser.parse_args()
-
-

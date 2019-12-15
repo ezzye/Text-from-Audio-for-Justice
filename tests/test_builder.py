@@ -7,7 +7,6 @@ from utils import load_document, load_fixture
 
 class TestChunkBuilder(unittest.TestCase):
 
-    # Takes a long time to run ****************************************************
     def test_transcribe(self):
         builder = ChunkBuilder()
         audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
@@ -23,10 +22,20 @@ class TestChunkBuilder(unittest.TestCase):
         word_output_file = 'fixtures/test_document2.doc'
         online_folder = 'https://audiotestexample.s3-eu-west-1.amazonaws.com/test1/'
         markup_file = 'fixtures/test2.taj'
-        document = builder.word(audio_output_chunks, word_output_file, online_folder, markup_file)
+        document_path = builder.word(audio_output_chunks, word_output_file, online_folder, markup_file)
+        print(f'Word file path: {word_output_file}')
 
-
-
+    def test_batch(self):
+        audio_source = 'fixtures/20191130-2034_Test1.wav'
+        word_output_file = 'fixtures/test_document3.doc'
+        transcription_output = 'fixtures/result3'
+        online_folder = 'https://audiotestexample.s3-eu-west-1.amazonaws.com/test1/'
+        markup_file = ''
+        split_sentences = 'fixtures/test3.taj'
+        audio_output = 'fixtures/test3_chunk'
+        builder = ChunkBuilder()
+        word_document_path = builder.batch(audio_source, word_output_file, transcription_output, online_folder,
+                                           markup_file, split_sentences, audio_output)
 
     def test_compile_ffmpeg_cli(self):
         builder = ChunkBuilder()
@@ -126,6 +135,67 @@ class TestChunkBuilder(unittest.TestCase):
         ]
         actual = builder.compile_chunk_phrases(transcription, markedup_taj_file, audio_output_path)
         self.assertEqual(actual, expected)
+
+    def test_compile_chunk_phrase_bigger_file2(self):
+        builder = ChunkBuilder()
+        transcription = load_fixture('transcription2.json')
+        markedup_taj_file = load_document('test3.taj')
+        audio_output_path = 'fixtures/test3_chunk'
+        expected = [{'end': 1.28, 'name': 'fixtures/test3_chunk1', 'start': 0.14},
+                    {'end': 5.25, 'name': 'fixtures/test3_chunk2', 'start': 1.44},
+                    {'end': 6.26, 'name': 'fixtures/test3_chunk3', 'start': 5.65},
+                    {'end': 7.21, 'name': 'fixtures/test3_chunk4', 'start': 6.67},
+                    {'end': 8.05, 'name': 'fixtures/test3_chunk5', 'start': 7.47},
+                    {'end': 8.92, 'name': 'fixtures/test3_chunk6', 'start': 8.42},
+                    {'end': 9.82, 'name': 'fixtures/test3_chunk7', 'start': 9.23},
+                    {'end': 10.74, 'name': 'fixtures/test3_chunk8', 'start': 10.09},
+                    {'end': 11.66, 'name': 'fixtures/test3_chunk9', 'start': 10.97},
+                    {'end': 12.54, 'name': 'fixtures/test3_chunk10', 'start': 11.76},
+                    {'end': 13.43, 'name': 'fixtures/test3_chunk11', 'start': 12.74},
+                    {'end': 14.34, 'name': 'fixtures/test3_chunk12', 'start': 13.6},
+                    {'end': 15.3, 'name': 'fixtures/test3_chunk13', 'start': 14.5},
+                    {'end': 16.17, 'name': 'fixtures/test3_chunk14', 'start': 15.51},
+                    {'end': 17.15, 'name': 'fixtures/test3_chunk15', 'start': 16.41},
+                    {'end': 17.86, 'name': 'fixtures/test3_chunk16', 'start': 17.24},
+                    {'end': 28.2, 'name': 'fixtures/test3_chunk17', 'start': 18.16},
+                    {'end': 29.76, 'name': 'fixtures/test3_chunk18', 'start': 28.32}]
+        actual = builder.compile_chunk_phrases(transcription, markedup_taj_file, audio_output_path)
+        self.assertEqual(actual, expected)
+
+    def test_word2(self):
+        builder = ChunkBuilder()
+        audio_output_chunks = 'fixtures/test3_chunk'
+        word_output_file = 'fixtures/test_document3.doc'
+        online_folder = 'https://audiotestexample.s3-eu-west-1.amazonaws.com/test1/'
+        markup_file = 'fixtures/test3.taj'
+        document_path = builder.word(audio_output_chunks, word_output_file, online_folder, markup_file)
+        print(f'Word file path: {word_output_file}')
+
+    def test_compile_ffmpeg_cli_single2(self):
+        builder = ChunkBuilder()
+        chunk_phrases = [{'end': 1.28, 'name': 'fixtures/test3_chunk1', 'start': 0.14},
+                         {'end': 5.25, 'name': 'fixtures/test3_chunk2', 'start': 1.44},
+                         {'end': 6.26, 'name': 'fixtures/test3_chunk3', 'start': 5.65},
+                         {'end': 7.21, 'name': 'fixtures/test3_chunk4', 'start': 6.67},
+                         {'end': 8.05, 'name': 'fixtures/test3_chunk5', 'start': 7.47},
+                         {'end': 8.92, 'name': 'fixtures/test3_chunk6', 'start': 8.42},
+                         {'end': 9.82, 'name': 'fixtures/test3_chunk7', 'start': 9.23},
+                         {'end': 10.74, 'name': 'fixtures/test3_chunk8', 'start': 10.09},
+                         {'end': 11.66, 'name': 'fixtures/test3_chunk9', 'start': 10.97},
+                         {'end': 12.54, 'name': 'fixtures/test3_chunk10', 'start': 11.76},
+                         {'end': 13.43, 'name': 'fixtures/test3_chunk11', 'start': 12.74},
+                         {'end': 14.34, 'name': 'fixtures/test3_chunk12', 'start': 13.6},
+                         {'end': 15.3, 'name': 'fixtures/test3_chunk13', 'start': 14.5},
+                         {'end': 16.17, 'name': 'fixtures/test3_chunk14', 'start': 15.51},
+                         {'end': 17.15, 'name': 'fixtures/test3_chunk15', 'start': 16.41},
+                         {'end': 17.86, 'name': 'fixtures/test3_chunk16', 'start': 17.24},
+                         {'end': 28.2, 'name': 'fixtures/test3_chunk17', 'start': 18.16},
+                         {'end': 29.76, 'name': 'fixtures/test3_chunk18', 'start': 28.32}]
+        audio_source_wav = 'fixtures/20191130-2034_Test1.wav'
+        audio_source = builder.convert_wav_to_mp3(audio_source_wav)
+        actual = builder.compile_ffmpeg_cli(chunk_phrases, audio_source)
+        print(f'actual chunk ffmpeg cli: {actual}')
+        expected = (['ffmpeg -i fixtures/20191130-2034_Test1.mp3 -ss 3.0 -c copy chunk1.mp3'])
 
     def test_compile_ffmpeg_cli_empty(self):
         builder = ChunkBuilder()

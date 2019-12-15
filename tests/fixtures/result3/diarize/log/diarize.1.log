@@ -1,0 +1,98 @@
+# java -Xmx2024m -jar /usr/share/bbc-kaldi/bbc-kaldi-recipe/diarize/lium_spkdiarization-8.4.1.jar --fInputMask=/tmp/media/fixtures/result3/diarize/tmp/1.wav --sOutputMask=/tmp/media/fixtures/result3/diarize/tmp/1.seg job.1 
+# Started at Sun Dec 15 11:19:30 UTC 2019
+#
+11:19.189                CONFIG| cmdLine: --fInputMask=/tmp/media/fixtures/result3/diarize/tmp/1.wav --sOutputMask=/tmp/media/fixtures/result3/diarize/tmp/1.seg job.1
+11:19.191 Diarization    INFO  | Diarization tuning	{main() / 1}
+11:19.192 Diarization    INFO  | Initialize segmentation	{initialize() / 1}
+11:19.211 MainTools      FINER | showName=job.1	{splitHypotesis() / 1}
+11:19.218 Diarization    FINER | -------------------------------------------	{run() / 11}
+11:19.219 Diarization    FINER | --- job.1 ---	{run() / 11}
+11:19.220 Diarization    FINER | -------------------------------------------	{run() / 11}
+11:19.882 MSegInit       INFO  | Initialization of the segmentation	{make() / 11}
+11:19.883 MSegInit       FINER | check segment : 0 2979	{detectEqualFeatures() / 11}
+11:19.939 MSegInit       FINER | check segment : 0 2979	{detectLikelihoodProblem() / 11}
+11:19.980 Diarization    INFO  | --> segmentation method=GLR	{ester2Diarization() / 11}
+11:19.984 MSeg           INFO  | Segmentation	{make() / 11}
+11:19.985 MSeg           FINE  | 	 do Measures	{make() / 11}
+11:19.205 MSeg           FINE  | 	 do Borders	{make() / 11}
+11:19.218 MSeg           FINE  | 	 do Clusters	{make() / 11}
+11:19.230 MClust         INFO  | Clustering: l	{make() / 11}
+11:19.232 MClust         INFO  | BEGIN CLUSTERING date: Sun Dec 15 11:19:32 UTC 2019 time in ms:1576408772230	{make() / 11}
+11:19.240 MClust         FINE  | 	next : score = 677.2273024886281 ci = 0(S0) cj = 1(S1)	{gaussianHACRightToLeft() / 11}
+11:19.241 MClust         FINE  | 	next : score = 135.02835567095292 ci = 1(S1) cj = 2(S2)	{gaussianHACRightToLeft() / 11}
+11:19.243 MClust         FINE  | 	next : score = 140.27498957939338 ci = 2(S2) cj = 3(S3)	{gaussianHACRightToLeft() / 11}
+11:19.243 Diarization    FINER | method:CLUST_H_BIC thr:3.0	{clustering() / 11}
+11:19.244 MClust         INFO  | Clustering: h	{make() / 11}
+11:19.245 MClust         INFO  | BEGIN CLUSTERING date: Sun Dec 15 11:19:32 UTC 2019 time in ms:1576408772244	{make() / 11}
+11:19.248 MClust         FINE  | merge = 0 score = -251.0021941874454 ci = 2(S2) cj = 3(S3)	{gaussianHAC() / 11}
+11:19.249 ClusterSet     INFO  | --> MERGE: S2 in S3	{mergeCluster() / 11}
+11:19.250 MClust         FINE  | merge = 1 score = -79.880314341543 ci = 1(S1) cj = 2(S2)	{gaussianHAC() / 11}
+11:19.251 ClusterSet     INFO  | --> MERGE: S1 in S2	{mergeCluster() / 11}
+11:19.254 MTrainInit     INFO  | Initialize models	{make() / 11}
+11:19.256 MTrainInit     FINE  | 	 initialize cluster=S0	{make() / 11}
+11:19.260 MTrainInit     FINE  | 	 initialize cluster=S1	{make() / 11}
+11:19.262 MTrainEM       INFO  | Train models using EM	{make() / 11}
+11:19.263 MTrainEM       FINE  | 	 train cluster=S0	{compute() / 11}
+11:19.276 GMMFactory     FINER | NbComp=8 first llh=-2.429170645548115	{getEM() / 11}
+11:19.279 GMMFactory     FINER | 	 i=0 llh=1.077273424873576 delta=3.506444070421691	{getEM() / 11}
+11:19.284 GMMFactory     FINER | 	 i=1 llh=1.8040379754317206 delta=0.7267645505581446	{getEM() / 11}
+11:19.287 GMMFactory     FINER | 	 i=2 llh=1.9849335664246228 delta=0.1808955909929022	{getEM() / 11}
+11:19.290 GMMFactory     FINER | 	 i=3 llh=2.0242223443920584 delta=0.03928877796743557	{getEM() / 11}
+11:19.294 GMMFactory     FINER | 	 i=4 llh=2.054965391058495 delta=0.03074304666643668	{getEM() / 11}
+11:19.297 GMMFactory     FINER | 	 i=5 llh=2.0955378024749103 delta=0.04057241141641521	{getEM() / 11}
+11:19.300 GMMFactory     FINER | 	 i=6 llh=2.128954066818015 delta=0.03341626434310463	{getEM() / 11}
+11:19.303 GMMFactory     FINER | 	 i=7 llh=2.157465863672419 delta=0.028511796854404192	{getEM() / 11}
+11:19.307 GMMFactory     FINER | 	 i=8 llh=2.1898639806704656 delta=0.03239811699804651	{getEM() / 11}
+11:19.309 GMMFactory     FINER | 	 i=9 llh=2.2325692153999928 delta=0.04270523472952714	{getEM() / 11}
+11:19.310 MTrainEM       FINE  | 	 train cluster=S1	{compute() / 11}
+11:19.324 GMMFactory     FINER | NbComp=8 first llh=-3.7391592116904904	{getEM() / 11}
+11:19.329 GMMFactory     FINER | 	 i=0 llh=-1.1794909678250685 delta=2.559668243865422	{getEM() / 11}
+11:19.333 GMMFactory     FINER | 	 i=1 llh=-0.5790047654685275 delta=0.6004862023565409	{getEM() / 11}
+11:19.339 GMMFactory     FINER | 	 i=2 llh=-0.3521925868596787 delta=0.22681217860884884	{getEM() / 11}
+11:19.346 GMMFactory     FINER | 	 i=3 llh=-0.145318559179696 delta=0.2068740276799827	{getEM() / 11}
+11:19.351 GMMFactory     FINER | 	 i=4 llh=0.0834843160202141 delta=0.2288028751999101	{getEM() / 11}
+11:19.355 GMMFactory     FINER | 	 i=5 llh=0.30494132851759803 delta=0.22145701249738392	{getEM() / 11}
+11:19.359 GMMFactory     FINER | 	 i=6 llh=0.4097337939993967 delta=0.10479246548179866	{getEM() / 11}
+11:19.364 GMMFactory     FINER | 	 i=7 llh=0.4833263958845053 delta=0.07359260188510863	{getEM() / 11}
+11:19.368 GMMFactory     FINER | 	 i=8 llh=0.5354742417667906 delta=0.05214784588228527	{getEM() / 11}
+11:19.372 GMMFactory     FINER | 	 i=9 llh=0.5658304208277634 delta=0.030356179060972766	{getEM() / 11}
+11:19.377 MDecode        INFO  | fast decoding, Number of GMM=2	{make() / 11}
+11:19.379 MDecode        FINE  | 	 decoder.accumulation starting at 0 to 2977	{make() / 11}
+11:19.408 MDecode        FINE  | 	 decoder.get result	{make() / 11}
+11:19.411 MfccMlpConcat  INFO  | Adjust the bounady of segmentation	{make() / 11}
+11:19.448 MDecode        INFO  | fast decoding, Number of GMM=8	{make() / 11}
+11:19.450 MDecode        FINE  | 	 decoder.accumulation starting at 0 to 2978	{make() / 11}
+11:19.822 MDecode        FINE  | 	 decoder.get result	{make() / 11}
+11:19.824 SFilter        INFO  | Filter segmentation using: j	{make() / 11}
+11:19.861 SFilter        WARNIN| feature not found=465	{addFrame() / 11}
+11:19.862 SFilter        WARNIN| feature not found=466	{addFrame() / 11}
+11:19.862 SFilter        WARNIN| feature not found=467	{addFrame() / 11}
+11:19.863 SFilter        WARNIN| feature not found=468	{addFrame() / 11}
+11:19.863 SFilter        WARNIN| feature not found=469	{addFrame() / 11}
+11:19.864 SFilter        WARNIN| feature not found=470	{addFrame() / 11}
+11:19.864 SFilter        WARNIN| feature not found=471	{addFrame() / 11}
+11:19.865 SFilter        WARNIN| feature not found=472	{addFrame() / 11}
+11:19.866 SFilter        WARNIN| feature not found=473	{addFrame() / 11}
+11:19.866 SFilter        WARNIN| feature not found=474	{addFrame() / 11}
+11:19.867 SFilter        WARNIN| feature not found=475	{addFrame() / 11}
+11:19.868 SFilter        WARNIN| feature not found=476	{addFrame() / 11}
+11:19.868 SFilter        WARNIN| feature not found=477	{addFrame() / 11}
+11:19.869 SFilter        WARNIN| feature not found=478	{addFrame() / 11}
+11:19.869 SFilter        WARNIN| feature not found=479	{addFrame() / 11}
+11:19.870 SFilter        WARNIN| feature not found=480	{addFrame() / 11}
+11:19.870 SFilter        WARNIN| feature not found=481	{addFrame() / 11}
+11:19.871 SFilter        WARNIN| feature not found=482	{addFrame() / 11}
+11:19.885 SFilter        FINER | remove segment less than param.segMinLenSpeech=150	{removeSmall() / 11}
+11:19.909 MScore         INFO  | Compute Score	{make() / 11}
+11:19.909 MScore         FINER | GMM size:4	{make() / 11}
+11:19.965 MScore         FINER | clustername = S0 name=MS =-33.384940873161085	{make() / 11}
+11:19.966 MScore         FINER | clustername = S0 name=MT =-33.970914722153644	{make() / 11}
+11:19.967 MScore         FINER | clustername = S0 name=FS =-33.721623504394984	{make() / 11}
+11:19.967 MScore         FINER | clustername = S0 name=FT =-34.37104758404359	{make() / 11}
+11:19.182 MScore         FINER | clustername = S1 name=MS =-33.22769765871057	{make() / 11}
+11:19.183 MScore         FINER | clustername = S1 name=MT =-33.46798125806045	{make() / 11}
+11:19.184 MScore         FINER | clustername = S1 name=FS =-33.174488707018966	{make() / 11}
+11:19.184 MScore         FINER | clustername = S1 name=FT =-33.647645371140904	{make() / 11}
+11:19.187 ClusterSet     INFO  | --> write ClusterSet : /tmp/media/fixtures/result3/diarize/tmp/1.seg / job.1	{write() / 11}
+# Accounting: time=11 threads=1
+# Ended (code 0) at Sun Dec 15 11:19:41 UTC 2019, elapsed time 11 seconds

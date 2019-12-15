@@ -1,0 +1,7 @@
+# compute-vad-from-frame-likes --map= --priors= ark:/tmp/media/fixtures/result3/vad/vad_gmm/full_ubm_noise_logprob.1.ark ark:/tmp/media/fixtures/result3/vad/vad_gmm/full_ubm_speech_logprob.1.ark ark:/tmp/media/fixtures/result3/vad/vad_gmm/full_ubm_music_logprob.1.ark ark,scp:/tmp/media/fixtures/result3/vad/vad_gmm/vad_gmm_vad.1.ark,/tmp/media/fixtures/result3/vad/vad_gmm/vad_gmm_vad.1.scp 
+# Started at Sun Dec 15 11:19:29 UTC 2019
+#
+compute-vad-from-frame-likes --map= --priors= ark:/tmp/media/fixtures/result3/vad/vad_gmm/full_ubm_noise_logprob.1.ark ark:/tmp/media/fixtures/result3/vad/vad_gmm/full_ubm_speech_logprob.1.ark ark:/tmp/media/fixtures/result3/vad/vad_gmm/full_ubm_music_logprob.1.ark ark,scp:/tmp/media/fixtures/result3/vad/vad_gmm/vad_gmm_vad.1.ark,/tmp/media/fixtures/result3/vad/vad_gmm/vad_gmm_vad.1.scp 
+LOG (compute-vad-from-frame-likes[5.4.168~1403-5a647]:main():compute-vad-from-frame-likes.cc:206) Applied frame-level likelihood-based voice activity detection; processed 1 utterances successfully; 0 had empty features.
+# Accounting: time=1 threads=1
+# Ended (code 0) at Sun Dec 15 11:19:30 UTC 2019, elapsed time 1 seconds

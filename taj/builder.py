@@ -33,9 +33,6 @@ def add_hyperlink(paragraph, text, url):
     return hyperlink
 
 
-
-
-
 class ChunkBuilder(object):
     def compose(self, mode, transcript, audio_source,
                 markup_file, split_sentences, audio_output,
@@ -55,15 +52,40 @@ class ChunkBuilder(object):
             options = shlex.split(ffmpeg_cli_item)
             subprocess.call(options)
 
+    def batch(self, audio_source, word_output_file, transcription_output, online_folder, markup_file, split_sentences,
+              audio_output):
+        print('Start transcribe...')
+        transcription_path = self.transcribe_audio(audio_source, transcription_output)
+        # transcription_path = 'fixtures/result3/results/20191130-2034_Test1/transcription.json'
+        print(f'Start Markup...{transcription_path}')
+        markup_path = self.make_markup(transcription_path, markup_file, split_sentences)
+        print(f'Start Making chunk phrases...{markup_path}')
+        markup_file = load_file(markup_path)
+        transcription_file = load_json(transcription_path)
+        chunk_phrase = self.compile_chunk_phrases(transcription_file, markup_file, audio_output)
+        print(f'Start ffmpeg making cli lines...{chunk_phrase}')
+        ffmpeg_cli = self.compile_ffmpeg_cli(chunk_phrase, audio_source)
+        print(f'Start ffmpeg making chunks...{ffmpeg_cli}')
+        self.build(ffmpeg_cli)
+        print('Start Making word file...')
+        self.word(audio_output, word_output_file, online_folder, markup_path)
+        print(f'Upload chunks to the online folder: {online_folder}')
+        print(f'Word file can be found here: {word_output_file}')
+        return word_output_file
+
     def word(self, audio_output_chunks, word_output_file, online_folder, markup_file):
         document = docx.Document()
         name_of_chunk = audio_output_chunks.split("/")[-1]
         markup_file_text = load_file(markup_file)
-        for index, phrase in enumerate(markup_file_text.split("|")):
+        phrase_list = []
+        for phrase in markup_file_text.split("|"):
+            if len(phrase) > 0:
+                phrase_list.append(phrase)
+        for index, phrase in enumerate(phrase_list):
             p = document.add_paragraph(phrase)
             add_hyperlink(p, f'[{index + 1}]  ', f'{online_folder}{name_of_chunk}{index + 1}.mp3')
         document.save(word_output_file)
-        return document
+        return word_output_file
 
     def make_markup(self, transcription_path, path_man, path_auto):
         transcript = load_json(transcription_path)
@@ -82,7 +104,6 @@ class ChunkBuilder(object):
         for chunk_phrase in chunk_phrases:
             list_of_output_files.append(f'{chunk_phrase["name"]}.mp3')
         self.build(ffmpeg_cli_list)
-        print(f'list_of_output_files: {list_of_output_files}')
         return list_of_output_files
 
     def compile_ffmpeg_cli(self, chunk_phrases, audiofile):
@@ -100,21 +121,16 @@ class ChunkBuilder(object):
 
         ffmpeg_cli[
             -1] = f'ffmpeg -i {audiofile} -ss {chunk_phrases[-1]["start"]} -c copy -y {chunk_phrases[-1]["name"]}.mp3'
-        print(f'ffmpeg_cli: {ffmpeg_cli}')
         return ffmpeg_cli
 
     def compile_chunk_phrases(self, transcription, markedup_taj_file, audio_output_path):
         chunk_list = markedup_taj_file.split('|')
-        print(f'size of chunk list: {len(chunk_list)}')
-        for index, chunk in enumerate(chunk_list):
-            print(f'chunk {index} is {chunk}')
         chunk_word_list = []
         words = transcription['words']
         word_count_end = 0
         chunk_phrases = []
         for chunk in chunk_list:
             chunk_words = chunk.split()
-            print(f'size of chunk: {len(chunk_words)} words')
             if len(chunk_words) > 0:
                 chunk_word_list.append(chunk_words)
         for index, chunk_word in enumerate(chunk_word_list):
@@ -123,22 +139,21 @@ class ChunkBuilder(object):
             start = words[word_count_start]['start']
             end = words[word_count_end - 1]['end']
             chunk_phrases.append({'name': f'{audio_output_path}{index + 1}', 'start': start, 'end': end})
-        print(f'chunk_phrases: {chunk_phrases}')
         return chunk_phrases
 
     def transcribe_audio(self, audio_source, transcription_output):
         current_working_dir = os.getcwd()
         audio_file_name = audio_source.split("/")[-1].split(".")[0]
-        print(f'before conversion: {audio_source}')
         if audio_source.split('.')[-1] == 'wav':
             audio_source = self.convert_wav_to_mp3(audio_source)
-        print(f'after conversion: {audio_source}')
         if audio_source.split('.')[-1] != 'mp3':
             raise Exception("OMG! The input audio file needs to be in wav or mp3 format.")
         instruction = f'docker run --rm  -v "{current_working_dir}:/tmp/media" --name bbc-kaldi-container  artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11 bbc-kaldi /tmp/media/{audio_source} /tmp/media/{transcription_output}'
+        transcription_output_path = f'{transcription_output}/results/{audio_file_name}/transcription.json'
         options = shlex.split(instruction)
-        subprocess.call(options)
-        return f'{transcription_output}/results/{audio_file_name}/transcription.json'
+        if not os.path.exists(transcription_output_path):
+            subprocess.call(options)
+        return transcription_output_path
 
     # docker run --rm  -v "/Users/MyLaptop/Media:/tmp/media" \
     #     --name bbc-kaldi-container  artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11 bbc-kaldi \

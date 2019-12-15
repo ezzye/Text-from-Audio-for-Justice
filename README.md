@@ -10,7 +10,16 @@ usage: taj [-h] [--audio_output AUDIO_OUTPUT] [--validate] [--audio_output AUDIO
                 {transcribe, chunk, make_markup, word}
 
 positional arguments:
-  {transcribe, chunk, make_markup, word}
+  {batch, transcribe, chunk, make_markup, word}
+    
+  batch
+    --audio_source          path of audio to process
+    --word_output_file      path of word output file
+    --online_folder         http url of folder of audio_files
+    --transcription_output  path for transcription file output
+    --markup_file           path of markup_file
+    --split_sentences       path of auto-generated markup split at sentences
+
 
   transcribe
         --audio_source          path of audio to process
