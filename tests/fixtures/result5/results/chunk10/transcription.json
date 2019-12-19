@@ -1,0 +1,324 @@
+{
+  "metadata": {
+    "version": "0.0.11"
+  },
+  "text": "i have spoken to and beck and oral up author found according to a cross crossing messages whatever quite speak to a buoy and back door on there we put politely reticent and rice i'm not sure he could this is angry users violence ball",
+  "punct": "I have spoken to and beck and oral up, author found. According to a cross crossing messages. Whatever quite speak to a buoy and back door on. There we put politely reticent and rice. I'm not sure he could this is angry users violence. Ball.",
+  "words": [
+    {
+      "start": 0.37,
+      "confidence": 0.64,
+      "end": 0.51,
+      "word": "i",
+      "punct": "I"
+    },
+    {
+      "start": 0.51,
+      "confidence": 1.0,
+      "end": 0.61,
+      "word": "have",
+      "punct": "have"
+    },
+    {
+      "start": 0.61,
+      "confidence": 1.0,
+      "end": 1.05,
+      "word": "spoken",
+      "punct": "spoken"
+    },
+    {
+      "start": 1.05,
+      "confidence": 1.0,
+      "end": 1.51,
+      "word": "to",
+      "punct": "to"
+    },
+    {
+      "start": 1.67,
+      "confidence": 1.0,
+      "end": 2.06,
+      "word": "and",
+      "punct": "and"
+    },
+    {
+      "start": 2.06,
+      "confidence": 0.86,
+      "end": 2.42,
+      "word": "beck",
+      "punct": "beck"
+    },
+    {
+      "start": 2.42,
+      "confidence": 0.85,
+      "end": 2.79,
+      "word": "and",
+      "punct": "and"
+    },
+    {
+      "start": 2.8,
+      "confidence": 0.72,
+      "end": 3.28,
+      "word": "oral",
+      "punct": "oral"
+    },
+    {
+      "start": 3.71,
+      "confidence": 0.32,
+      "end": 4.26,
+      "word": "up",
+      "punct": "up,"
+    },
+    {
+      "start": 4.38,
+      "confidence": 0.32,
+      "end": 4.62,
+      "word": "author",
+      "punct": "author"
+    },
+    {
+      "start": 4.76,
+      "confidence": 0.68,
+      "end": 4.98,
+      "word": "found",
+      "punct": "found."
+    },
+    {
+      "start": 4.99,
+      "confidence": 0.42,
+      "end": 5.25,
+      "word": "according",
+      "punct": "According"
+    },
+    {
+      "start": 5.39,
+      "confidence": 0.56,
+      "end": 5.64,
+      "word": "to",
+      "punct": "to"
+    },
+    {
+      "start": 5.66,
+      "confidence": 0.8,
+      "end": 5.81,
+      "word": "a",
+      "punct": "a"
+    },
+    {
+      "start": 5.98,
+      "confidence": 0.43,
+      "end": 6.19,
+      "word": "cross",
+      "punct": "cross"
+    },
+    {
+      "start": 6.28,
+      "confidence": 0.48,
+      "end": 6.59,
+      "word": "crossing",
+      "punct": "crossing"
+    },
+    {
+      "start": 6.62,
+      "confidence": 0.6,
+      "end": 7.08,
+      "word": "messages",
+      "punct": "messages."
+    },
+    {
+      "start": 7.09,
+      "confidence": 0.98,
+      "end": 7.49,
+      "word": "whatever",
+      "punct": "Whatever"
+    },
+    {
+      "start": 7.76,
+      "confidence": 0.3,
+      "end": 7.99,
+      "word": "quite",
+      "punct": "quite"
+    },
+    {
+      "start": 8.07,
+      "confidence": 0.71,
+      "end": 8.35,
+      "word": "speak",
+      "punct": "speak"
+    },
+    {
+      "start": 8.37,
+      "confidence": 0.82,
+      "end": 8.52,
+      "word": "to",
+      "punct": "to"
+    },
+    {
+      "start": 8.54,
+      "confidence": 0.71,
+      "end": 8.75,
+      "word": "a",
+      "punct": "a"
+    },
+    {
+      "start": 8.97,
+      "confidence": 0.4,
+      "end": 9.32,
+      "word": "buoy",
+      "punct": "buoy"
+    },
+    {
+      "start": 9.36,
+      "confidence": 0.4,
+      "end": 9.6,
+      "word": "and",
+      "punct": "and"
+    },
+    {
+      "start": 9.8,
+      "confidence": 0.66,
+      "end": 10.12,
+      "word": "back",
+      "punct": "back"
+    },
+    {
+      "start": 10.14,
+      "confidence": 0.71,
+      "end": 10.52,
+      "word": "door",
+      "punct": "door"
+    },
+    {
+      "start": 10.6,
+      "confidence": 0.78,
+      "end": 10.9,
+      "word": "on",
+      "punct": "on."
+    },
+    {
+      "start": 10.94,
+      "confidence": 0.65,
+      "end": 11.17,
+      "word": "there",
+      "punct": "There"
+    },
+    {
+      "start": 11.18,
+      "confidence": 0.72,
+      "end": 11.52,
+      "word": "we",
+      "punct": "we"
+    },
+    {
+      "start": 12.08,
+      "confidence": 0.78,
+      "end": 12.3,
+      "word": "put",
+      "punct": "put"
+    },
+    {
+      "start": 12.32,
+      "confidence": 1.0,
+      "end": 12.9,
+      "word": "politely",
+      "punct": "politely"
+    },
+    {
+      "start": 12.93,
+      "confidence": 1.0,
+      "end": 13.96,
+      "word": "reticent",
+      "punct": "reticent"
+    },
+    {
+      "start": 13.99,
+      "confidence": 0.96,
+      "end": 14.22,
+      "word": "and",
+      "punct": "and"
+    },
+    {
+      "start": 14.25,
+      "confidence": 0.7,
+      "end": 14.89,
+      "word": "rice",
+      "punct": "rice."
+    },
+    {
+      "start": 15.16,
+      "confidence": 0.99,
+      "end": 15.31,
+      "word": "i'm",
+      "punct": "I'm"
+    },
+    {
+      "start": 15.31,
+      "confidence": 0.99,
+      "end": 15.5,
+      "word": "not",
+      "punct": "not"
+    },
+    {
+      "start": 15.5,
+      "confidence": 1.0,
+      "end": 15.91,
+      "word": "sure",
+      "punct": "sure"
+    },
+    {
+      "start": 15.93,
+      "confidence": 0.67,
+      "end": 16.14,
+      "word": "he",
+      "punct": "he"
+    },
+    {
+      "start": 16.15,
+      "confidence": 0.55,
+      "end": 16.43,
+      "word": "could",
+      "punct": "could"
+    },
+    {
+      "start": 16.43,
+      "confidence": 0.5,
+      "end": 16.71,
+      "word": "this",
+      "punct": "this"
+    },
+    {
+      "start": 16.72,
+      "confidence": 0.75,
+      "end": 16.93,
+      "word": "is",
+      "punct": "is"
+    },
+    {
+      "start": 16.98,
+      "confidence": 0.99,
+      "end": 17.49,
+      "word": "angry",
+      "punct": "angry"
+    },
+    {
+      "start": 17.49,
+      "confidence": 0.64,
+      "end": 17.84,
+      "word": "users",
+      "punct": "users"
+    },
+    {
+      "start": 17.85,
+      "confidence": 0.73,
+      "end": 18.42,
+      "word": "violence",
+      "punct": "violence."
+    },
+    {
+      "start": 18.55,
+      "confidence": 0.64,
+      "end": 18.87,
+      "word": "ball",
+      "punct": "Ball."
+    }
+  ]
+}

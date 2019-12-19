@@ -1,0 +1,13 @@
+# mkdir -p /tmp/media/fixtures/result4/decode_rescore/score_12/ && lattice-push "ark:gunzip -c /tmp/media/fixtures/result4/decode_rescore/lat.*.gz|" ark:- | lattice-align-words /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/graph_cps.mgb-2015.5gm.pruned/phones/word_boundary.int /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/final.mdl ark:- ark:- | lattice-to-ctm-conf --inv-acoustic-scale=12 ark:- - | /usr/share/bbc-kaldi/bbc-kaldi-recipe/utils/int2sym.pl -f 5 /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/graph_cps.mgb-2015.5gm.pruned/words.txt | /usr/share/bbc-kaldi/bbc-kaldi-recipe/utils/convert_ctm.pl /tmp/media/fixtures/result4/segments /tmp/media/fixtures/result4/reco2file_and_channel > /tmp/media/fixtures/result4/decode_rescore/score_12/decode.ctm 
+# Started at Wed Dec 18 17:38:07 UTC 2019
+#
+lattice-align-words /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/graph_cps.mgb-2015.5gm.pruned/phones/word_boundary.int /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/final.mdl ark:- ark:- 
+lattice-push 'ark:gunzip -c /tmp/media/fixtures/result4/decode_rescore/lat.*.gz|' ark:- 
+lattice-to-ctm-conf --inv-acoustic-scale=12 ark:- - 
+LOG (lattice-push[5.4.168~1403-5a647]:main():lattice-push.cc:98) Pushed 1 lattices, errors on 0
+LOG (lattice-align-words[5.4.168~1403-5a647]:main():lattice-align-words.cc:125) Successfully aligned 1 lattices; 0 had errors.
+LOG (lattice-to-ctm-conf[5.4.168~1403-5a647]:main():lattice-to-ctm-conf.cc:172) For utterance chunk8_S000000MSU_00.00_12.61, Bayes Risk 15.0643, avg. confidence per-word 0.677312
+LOG (lattice-to-ctm-conf[5.4.168~1403-5a647]:main():lattice-to-ctm-conf.cc:181) Done 1 lattices.
+LOG (lattice-to-ctm-conf[5.4.168~1403-5a647]:main():lattice-to-ctm-conf.cc:182) Overall average Bayes Risk per sentence is 15.0643 and per word, 0.376606
+# Accounting: time=1 threads=1
+# Ended (code 0) at Wed Dec 18 17:38:08 UTC 2019, elapsed time 1 seconds

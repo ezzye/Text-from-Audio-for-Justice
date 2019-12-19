@@ -15,25 +15,25 @@ def parse_args():
         default='audio.wav')
     parser.add_argument(
         '--audio_output_chunks',
-        '-s',
+        '-c',
         type=str,
         help='path to name of output chunks',
         default='chunk')
     parser.add_argument(
         '--word_output_file',
-        '-s',
+        '-w',
         type=str,
         help='path of word output file',
         default='document.docx')
     parser.add_argument(
         '--online_folder',
-        '-s',
+        '-f',
         type=str,
         help='http url of folder of audio_files',
         default='')
     parser.add_argument(
         '--transcription_output',
-        '-s',
+        '-p',
         type=str,
         help='path of transcription output file',
         default='transcription.json')

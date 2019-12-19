@@ -1,0 +1,8 @@
+# compute-vad --config=/usr/share/bbc-kaldi/bbc-kaldi-recipe/vad/conf/vad.conf scp:/tmp/media/tests/fixtures/result_test/vad/split1/1/feats.scp ark,scp:/tmp/media/tests/fixtures/result_test/vad/vad/vad_vad.1.ark,/tmp/media/tests/fixtures/result_test/vad/vad/vad_vad.1.scp 
+# Started at Sun Dec 15 18:37:10 UTC 2019
+#
+compute-vad --config=/usr/share/bbc-kaldi/bbc-kaldi-recipe/vad/conf/vad.conf scp:/tmp/media/tests/fixtures/result_test/vad/split1/1/feats.scp ark,scp:/tmp/media/tests/fixtures/result_test/vad/vad/vad_vad.1.ark,/tmp/media/tests/fixtures/result_test/vad/vad/vad_vad.1.scp 
+LOG (compute-vad[5.4.168~1403-5a647]:main():compute-vad.cc:95) Applied energy based voice activity detection; processed 1 utterances successfully; 0 had empty features, and 0 were completely unvoiced.
+LOG (compute-vad[5.4.168~1403-5a647]:main():compute-vad.cc:99) Proportion of voiced frames was 0.653691 over 2980 frames.
+# Accounting: time=0 threads=1
+# Ended (code 0) at Sun Dec 15 18:37:10 UTC 2019, elapsed time 0 seconds

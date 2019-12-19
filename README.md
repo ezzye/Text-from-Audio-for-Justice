@@ -19,6 +19,7 @@ positional arguments:
     --transcription_output  path for transcription file output
     --markup_file           path of markup_file
     --split_sentences       path of auto-generated markup split at sentences
+    --audio_output          output path for chunk files
 
 
   transcribe

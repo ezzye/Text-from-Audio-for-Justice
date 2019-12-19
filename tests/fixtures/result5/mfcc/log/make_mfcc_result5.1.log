@@ -1,0 +1,12 @@
+# extract-segments scp,p:/tmp/media/fixtures/result5/wav.scp /tmp/media/fixtures/result5/mfcc/log/segments.1 ark:- | compute-mfcc-feats --verbose=2 --config=/usr/share/bbc-kaldi/bbc-kaldi-recipe/conf/mfcc_hires.conf ark:- ark:- | copy-feats --compress=true ark:- ark,scp:/tmp/media/fixtures/result5/mfcc/raw_mfcc_result5.1.ark,/tmp/media/fixtures/result5/mfcc/raw_mfcc_result5.1.scp 
+# Started at Wed Dec 18 17:42:56 UTC 2019
+#
+copy-feats --compress=true ark:- ark,scp:/tmp/media/fixtures/result5/mfcc/raw_mfcc_result5.1.ark,/tmp/media/fixtures/result5/mfcc/raw_mfcc_result5.1.scp 
+compute-mfcc-feats --verbose=2 --config=/usr/share/bbc-kaldi/bbc-kaldi-recipe/conf/mfcc_hires.conf ark:- ark:- 
+extract-segments scp,p:/tmp/media/fixtures/result5/wav.scp /tmp/media/fixtures/result5/mfcc/log/segments.1 ark:- 
+LOG (extract-segments[5.4.168~1403-5a647]:main():extract-segments.cc:193) Successfully processed 1 lines out of 1 in the segments file. 
+VLOG[2] (compute-mfcc-feats[5.4.168~1403-5a647]:main():compute-mfcc-feats.cc:173) Processed features for key chunk10_S000000MSU_00.00_18.89
+LOG (compute-mfcc-feats[5.4.168~1403-5a647]:main():compute-mfcc-feats.cc:176)  Done 1 out of 1 utterances.
+LOG (copy-feats[5.4.168~1403-5a647]:main():copy-feats.cc:143) Copied 1 feature matrices.
+# Accounting: time=0 threads=1
+# Ended (code 0) at Wed Dec 18 17:42:56 UTC 2019, elapsed time 0 seconds

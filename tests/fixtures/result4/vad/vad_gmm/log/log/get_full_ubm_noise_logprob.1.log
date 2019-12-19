@@ -1,0 +1,11 @@
+# fgmm-global-get-frame-likes --average=false "--gselect=ark,s,cs:gunzip -c /tmp/media/fixtures/result4/vad/vad_gmm/full_ubm_noise_gselect.1.gz|" /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/vad/full_ubm_noise//final.ubm "ark,s,cs:add-deltas --delta-window=2 --delta-order=2 scp:/tmp/media/fixtures/result4/vad/split1/1/feats.scp ark:- | apply-cmvn-sliding --norm-vars=false --center=true --cmn-window=300 ark:- ark:- |" ark:/tmp/media/fixtures/result4/vad/vad_gmm/full_ubm_noise_logprob.1.ark 
+# Started at Wed Dec 18 17:34:37 UTC 2019
+#
+fgmm-global-get-frame-likes --average=false '--gselect=ark,s,cs:gunzip -c /tmp/media/fixtures/result4/vad/vad_gmm/full_ubm_noise_gselect.1.gz|' /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/vad/full_ubm_noise//final.ubm 'ark,s,cs:add-deltas --delta-window=2 --delta-order=2 scp:/tmp/media/fixtures/result4/vad/split1/1/feats.scp ark:- | apply-cmvn-sliding --norm-vars=false --center=true --cmn-window=300 ark:- ark:- |' ark:/tmp/media/fixtures/result4/vad/vad_gmm/full_ubm_noise_logprob.1.ark 
+add-deltas --delta-window=2 --delta-order=2 scp:/tmp/media/fixtures/result4/vad/split1/1/feats.scp ark:- 
+apply-cmvn-sliding --norm-vars=false --center=true --cmn-window=300 ark:- ark:- 
+LOG (apply-cmvn-sliding[5.4.168~1403-5a647]:main():apply-cmvn-sliding.cc:75) Applied sliding-window cepstral mean normalization to 1 utterances, 0 had errors.
+LOG (fgmm-global-get-frame-likes[5.4.168~1403-5a647]:main():fgmm-global-get-frame-likes.cc:118) Done 1 files; 0 with errors.
+LOG (fgmm-global-get-frame-likes[5.4.168~1403-5a647]:main():fgmm-global-get-frame-likes.cc:120) Overall likelihood per frame = -136.292 over 1263 frames.
+# Accounting: time=0 threads=1
+# Ended (code 0) at Wed Dec 18 17:34:38 UTC 2019, elapsed time 0 seconds

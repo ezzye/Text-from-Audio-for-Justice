@@ -1,0 +1,7 @@
+# merge-vads --map=/usr/share/bbc-kaldi/bbc-kaldi-recipe/vad/conf/merge_vad_map.txt scp:/tmp/media/fixtures/result5/vad/split1/1/vad.scp scp:/tmp/media/fixtures/result5/vad/vad_gmm/vad_gmm_vad.1.scp ark,scp:/tmp/media/fixtures/result5/vad/vad_gmm/vad_merged_vad.1.ark,/tmp/media/fixtures/result5/vad/vad_gmm/vad_merged_vad.1.scp 
+# Started at Wed Dec 18 17:42:43 UTC 2019
+#
+merge-vads --map=/usr/share/bbc-kaldi/bbc-kaldi-recipe/vad/conf/merge_vad_map.txt scp:/tmp/media/fixtures/result5/vad/split1/1/vad.scp scp:/tmp/media/fixtures/result5/vad/vad_gmm/vad_gmm_vad.1.scp ark,scp:/tmp/media/fixtures/result5/vad/vad_gmm/vad_merged_vad.1.ark,/tmp/media/fixtures/result5/vad/vad_gmm/vad_merged_vad.1.scp 
+LOG (merge-vads[5.4.168~1403-5a647]:main():merge-vads.cc:155) Merged voice activity detection decisions; processed 1 utterances successfully; 0 had errors.
+# Accounting: time=0 threads=1
+# Ended (code 0) at Wed Dec 18 17:42:43 UTC 2019, elapsed time 0 seconds

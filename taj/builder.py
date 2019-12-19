@@ -37,15 +37,18 @@ class ChunkBuilder(object):
     def compose(self, mode, transcript, audio_source,
                 markup_file, split_sentences, audio_output,
                 transcription_output, validate, audio_output_chunks,
-                word_output_file, online_folder):
+                word_output_file, online_folder, doc_output):
         if mode == 'make_markup':
             self.make_markup(transcript, markup_file, split_sentences)
         if mode == 'chunk':
             self.chunk(audio_source, transcript, markup_file, audio_output)
         if mode == 'transcribe':
-            self.transcribe_audio(self, audio_source, transcription_output)
+            self.transcribe_audio(audio_source, doc_output)
         if mode == 'word':
             self.word(audio_output_chunks, word_output_file, online_folder, markup_file)
+        if mode == 'batch':
+            self.batch(audio_source, word_output_file, transcription_output, online_folder,
+                       markup_file, split_sentences, audio_output, doc_output)
 
     def build(self, ffmpeg_cli):
         for ffmpeg_cli_item in ffmpeg_cli:
@@ -53,7 +56,7 @@ class ChunkBuilder(object):
             subprocess.call(options)
 
     def batch(self, audio_source, word_output_file, transcription_output, online_folder, markup_file, split_sentences,
-              audio_output):
+              audio_output, doc_output):
         print('Start transcribe...')
         transcription_path = self.transcribe_audio(audio_source, transcription_output)
         # transcription_path = 'fixtures/result3/results/20191130-2034_Test1/transcription.json'
@@ -90,7 +93,7 @@ class ChunkBuilder(object):
     def make_markup(self, transcription_path, path_man, path_auto):
         transcript = load_json(transcription_path)
         if path_auto == '':
-            path = self.extract_markup_file(transcript, path_man)
+            path = path_man
         else:
             path = self.make_markup_file(transcript, path_auto)
         return path
@@ -141,17 +144,19 @@ class ChunkBuilder(object):
             chunk_phrases.append({'name': f'{audio_output_path}{index + 1}', 'start': start, 'end': end})
         return chunk_phrases
 
-    def transcribe_audio(self, audio_source, transcription_output):
+    def transcribe_audio(self, audio_source, doc_output):
         current_working_dir = os.getcwd()
         audio_file_name = audio_source.split("/")[-1].split(".")[0]
         if audio_source.split('.')[-1] == 'wav':
-            audio_source = self.convert_wav_to_mp3(audio_source)
-        if audio_source.split('.')[-1] != 'mp3':
-            raise Exception("OMG! The input audio file needs to be in wav or mp3 format.")
-        instruction = f'docker run --rm  -v "{current_working_dir}:/tmp/media" --name bbc-kaldi-container  artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11 bbc-kaldi /tmp/media/{audio_source} /tmp/media/{transcription_output}'
-        transcription_output_path = f'{transcription_output}/results/{audio_file_name}/transcription.json'
+            if not os.path.exists(f'{audio_source.split(".")[0]}.mp3'):
+                self.convert_wav_to_mp3(audio_source)
+        # if audio_source.split('.')[-1] != 'mp3':
+        #     raise Exception("OMG! The input audio file needs to be in wav or mp3 format.")
+        instruction = f'docker run --rm  -v "{current_working_dir}:/tmp/media" --name bbc-kaldi-container  artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11 bbc-kaldi /tmp/media/{audio_source} /tmp/media/{doc_output}'
+        transcription_output_path = f'{doc_output}/results/{audio_file_name}/transcription.json'
         options = shlex.split(instruction)
         if not os.path.exists(transcription_output_path):
+            print(f'Making transcript....................................................................')
             subprocess.call(options)
         return transcription_output_path
 

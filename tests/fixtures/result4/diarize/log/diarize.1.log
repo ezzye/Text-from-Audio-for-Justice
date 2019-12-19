@@ -1,0 +1,59 @@
+# java -Xmx2024m -jar /usr/share/bbc-kaldi/bbc-kaldi-recipe/diarize/lium_spkdiarization-8.4.1.jar --fInputMask=/tmp/media/fixtures/result4/diarize/tmp/1.wav --sOutputMask=/tmp/media/fixtures/result4/diarize/tmp/1.seg job.1 
+# Started at Wed Dec 18 17:34:38 UTC 2019
+#
+05:34.765                CONFIG| cmdLine: --fInputMask=/tmp/media/fixtures/result4/diarize/tmp/1.wav --sOutputMask=/tmp/media/fixtures/result4/diarize/tmp/1.seg job.1
+05:34.767 Diarization    INFO  | Diarization tuning	{main() / 1}
+05:34.768 Diarization    INFO  | Initialize segmentation	{initialize() / 1}
+05:34.795 MainTools      FINER | showName=job.1	{splitHypotesis() / 1}
+05:34.806 Diarization    FINER | -------------------------------------------	{run() / 12}
+05:34.807 Diarization    FINER | --- job.1 ---	{run() / 12}
+05:34.808 Diarization    FINER | -------------------------------------------	{run() / 12}
+05:34.493 MSegInit       INFO  | Initialization of the segmentation	{make() / 12}
+05:34.494 MSegInit       FINER | check segment : 0 1262	{detectEqualFeatures() / 12}
+05:34.556 MSegInit       FINER | check segment : 0 1262	{detectLikelihoodProblem() / 12}
+05:34.569 Diarization    INFO  | --> segmentation method=GLR	{ester2Diarization() / 12}
+05:34.574 MSeg           INFO  | Segmentation	{make() / 12}
+05:34.576 MSeg           FINE  | 	 do Measures	{make() / 12}
+05:34.822 MSeg           FINE  | 	 do Borders	{make() / 12}
+05:34.830 MSeg           FINE  | 	 do Clusters	{make() / 12}
+05:34.843 MClust         INFO  | Clustering: l	{make() / 12}
+05:34.844 MClust         INFO  | BEGIN CLUSTERING date: Wed Dec 18 17:34:40 UTC 2019 time in ms:1576690480842	{make() / 12}
+05:34.851 MClust         FINE  | 	next : score = 125.85510262802075 ci = 0(S0) cj = 1(S1)	{gaussianHACRightToLeft() / 12}
+05:34.853 Diarization    FINER | method:CLUST_H_BIC thr:3.0	{clustering() / 12}
+05:34.854 MClust         INFO  | Clustering: h	{make() / 12}
+05:34.855 MClust         INFO  | BEGIN CLUSTERING date: Wed Dec 18 17:34:40 UTC 2019 time in ms:1576690480854	{make() / 12}
+05:34.858 MClust         FINE  | merge = 0 score = -245.40723484215505 ci = 0(S0) cj = 1(S1)	{gaussianHAC() / 12}
+05:34.859 ClusterSet     INFO  | --> MERGE: S0 in S1	{mergeCluster() / 12}
+05:34.865 MTrainInit     INFO  | Initialize models	{make() / 12}
+05:34.867 MTrainInit     FINE  | 	 initialize cluster=S0	{make() / 12}
+05:34.871 MTrainEM       INFO  | Train models using EM	{make() / 12}
+05:34.873 MTrainEM       FINE  | 	 train cluster=S0	{compute() / 12}
+05:34.891 GMMFactory     FINER | NbComp=8 first llh=-2.4872303294240257	{getEM() / 12}
+05:34.903 GMMFactory     FINER | 	 i=0 llh=-0.5502680143351025 delta=1.9369623150889232	{getEM() / 12}
+05:34.914 GMMFactory     FINER | 	 i=1 llh=-0.19146794674173717 delta=0.35880006759336536	{getEM() / 12}
+05:34.923 GMMFactory     FINER | 	 i=2 llh=-0.007994399251621083 delta=0.1834735474901161	{getEM() / 12}
+05:34.934 GMMFactory     FINER | 	 i=3 llh=0.11780216717293034 delta=0.12579656642455142	{getEM() / 12}
+05:34.945 GMMFactory     FINER | 	 i=4 llh=0.23301840062088958 delta=0.11521623344795924	{getEM() / 12}
+05:34.953 GMMFactory     FINER | 	 i=5 llh=0.3154902951270685 delta=0.08247189450617892	{getEM() / 12}
+05:34.960 GMMFactory     FINER | 	 i=6 llh=0.36888678002572944 delta=0.053396484898660945	{getEM() / 12}
+05:34.968 GMMFactory     FINER | 	 i=7 llh=0.40888545720265723 delta=0.03999867717692779	{getEM() / 12}
+05:34.974 GMMFactory     FINER | 	 i=8 llh=0.4385171917136812 delta=0.029631734511023966	{getEM() / 12}
+05:34.982 GMMFactory     FINER | 	 i=9 llh=0.45780084377784014 delta=0.01928365206415894	{getEM() / 12}
+05:34.988 MDecode        INFO  | fast decoding, Number of GMM=1	{make() / 12}
+05:34.992 MDecode        FINE  | 	 decoder.accumulation starting at 0 to 1260	{make() / 12}
+05:34.014 MDecode        FINE  | 	 decoder.get result	{make() / 12}
+05:34.019 MfccMlpConcat  INFO  | Adjust the bounady of segmentation	{make() / 12}
+05:34.059 MDecode        INFO  | fast decoding, Number of GMM=8	{make() / 12}
+05:34.062 MDecode        FINE  | 	 decoder.accumulation starting at 0 to 1261	{make() / 12}
+05:34.369 MDecode        FINE  | 	 decoder.get result	{make() / 12}
+05:34.373 SFilter        INFO  | Filter segmentation using: j	{make() / 12}
+05:34.386 SFilter        FINER | remove segment less than param.segMinLenSpeech=150	{removeSmall() / 12}
+05:34.406 MScore         INFO  | Compute Score	{make() / 12}
+05:34.408 MScore         FINER | GMM size:4	{make() / 12}
+05:34.533 MScore         FINER | clustername = S0 name=MS =-32.439066705790076	{make() / 12}
+05:34.534 MScore         FINER | clustername = S0 name=MT =-33.30843538955084	{make() / 12}
+05:34.535 MScore         FINER | clustername = S0 name=FS =-33.59100006206874	{make() / 12}
+05:34.536 MScore         FINER | clustername = S0 name=FT =-33.77364252467989	{make() / 12}
+05:34.539 ClusterSet     INFO  | --> write ClusterSet : /tmp/media/fixtures/result4/diarize/tmp/1.seg / job.1	{write() / 12}
+# Accounting: time=11 threads=1
+# Ended (code 0) at Wed Dec 18 17:34:49 UTC 2019, elapsed time 11 seconds

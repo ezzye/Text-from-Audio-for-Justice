@@ -1,9 +1,0 @@
-# lattice-lmrescore --lm-scale=-1.0 "ark:gunzip -c /tmp/media/fixtures/result/decode/lat.1.gz|" "fstproject --project_output=true /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/lang_cps.mgb-2015.5gm.pruned/G.fst |" ark:- | lattice-lmrescore-const-arpa --lm-scale=1.0 ark:- /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/lang_cps.mgb-2015.5gm/G.carpa "ark,t:|gzip -c>/tmp/media/fixtures/result/decode_rescore/lat.1.gz" 
-# Started at Thu Dec 12 17:10:46 UTC 2019
-#
-lattice-lmrescore-const-arpa --lm-scale=1.0 ark:- /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/lang_cps.mgb-2015.5gm/G.carpa 'ark,t:|gzip -c>/tmp/media/fixtures/result/decode_rescore/lat.1.gz' 
-lattice-lmrescore --lm-scale=-1.0 'ark:gunzip -c /tmp/media/fixtures/result/decode/lat.1.gz|' 'fstproject --project_output=true /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/lang_cps.mgb-2015.5gm.pruned/G.fst |' ark:- 
-LOG (lattice-lmrescore[5.4.168~1403-5a647]:main():lattice-lmrescore.cc:148) Done 2 lattices, failed for 0
-LOG (lattice-lmrescore-const-arpa[5.4.168~1403-5a647]:main():lattice-lmrescore-const-arpa.cc:117) Done 2 lattices, failed for 0
-# Accounting: time=12 threads=1
-# Ended (code 0) at Thu Dec 12 17:10:58 UTC 2019, elapsed time 12 seconds

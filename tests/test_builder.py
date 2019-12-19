@@ -16,6 +16,15 @@ class TestChunkBuilder(unittest.TestCase):
         expected = load_json('fixtures/transcription.json')
         self.assertEqual(actual["punct"], expected["punct"])
 
+    def test_transcribe_small_mp3files(self):
+        builder = ChunkBuilder()
+        audio_source_wav = 'fixtures/small_mp3files/chunk10.mp3'
+        doc_output = 'fixtures/result5'
+        transcription_path = builder.transcribe_audio(audio_source_wav, doc_output)
+        actual = load_json(transcription_path)
+        # expected = load_json('fixtures/small_mp3files/transcription.json')
+        # self.assertEqual(actual["punct"], expected["punct"])
+
     def test_word(self):
         builder = ChunkBuilder()
         audio_output_chunks = 'fixtures/chunk'

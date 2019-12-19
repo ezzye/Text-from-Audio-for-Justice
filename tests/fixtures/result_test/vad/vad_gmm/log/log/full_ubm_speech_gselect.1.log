@@ -1,0 +1,18 @@
+# gmm-gselect --n=20 /tmp/media/tests/fixtures/result_test/vad/vad_gmm/full_ubm_speech_final.dubm "ark,s,cs:add-deltas --delta-window=2 --delta-order=2 scp:/tmp/media/tests/fixtures/result_test/vad/split1/1/feats.scp ark:- | apply-cmvn-sliding --norm-vars=false --center=true --cmn-window=300 ark:- ark:- |" ark:- | fgmm-gselect --gselect=ark,s,cs:- --n=20 /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/vad/full_ubm_speech//final.ubm "ark,s,cs:add-deltas --delta-window=2 --delta-order=2 scp:/tmp/media/tests/fixtures/result_test/vad/split1/1/feats.scp ark:- | apply-cmvn-sliding --norm-vars=false --center=true --cmn-window=300 ark:- ark:- |" "ark:|gzip -c >/tmp/media/tests/fixtures/result_test/vad/vad_gmm/full_ubm_speech_gselect.1.gz" 
+# Started at Sun Dec 15 18:37:11 UTC 2019
+#
+gmm-gselect --n=20 /tmp/media/tests/fixtures/result_test/vad/vad_gmm/full_ubm_speech_final.dubm 'ark,s,cs:add-deltas --delta-window=2 --delta-order=2 scp:/tmp/media/tests/fixtures/result_test/vad/split1/1/feats.scp ark:- | apply-cmvn-sliding --norm-vars=false --center=true --cmn-window=300 ark:- ark:- |' ark:- 
+fgmm-gselect --gselect=ark,s,cs:- --n=20 /usr/share/bbc-kaldi/bbc-kaldi-recipe/models/vad/full_ubm_speech//final.ubm 'ark,s,cs:add-deltas --delta-window=2 --delta-order=2 scp:/tmp/media/tests/fixtures/result_test/vad/split1/1/feats.scp ark:- | apply-cmvn-sliding --norm-vars=false --center=true --cmn-window=300 ark:- ark:- |' 'ark:|gzip -c >/tmp/media/tests/fixtures/result_test/vad/vad_gmm/full_ubm_speech_gselect.1.gz' 
+add-deltas --delta-window=2 --delta-order=2 scp:/tmp/media/tests/fixtures/result_test/vad/split1/1/feats.scp ark:- 
+apply-cmvn-sliding --norm-vars=false --center=true --cmn-window=300 ark:- ark:- 
+add-deltas --delta-window=2 --delta-order=2 scp:/tmp/media/tests/fixtures/result_test/vad/split1/1/feats.scp ark:- 
+apply-cmvn-sliding --norm-vars=false --center=true --cmn-window=300 ark:- ark:- 
+LOG (apply-cmvn-sliding[5.4.168~1403-5a647]:main():apply-cmvn-sliding.cc:75) Applied sliding-window cepstral mean normalization to 1 utterances, 0 had errors.
+LOG (apply-cmvn-sliding[5.4.168~1403-5a647]:main():apply-cmvn-sliding.cc:75) Applied sliding-window cepstral mean normalization to 1 utterances, 0 had errors.
+LOG (gmm-gselect[5.4.168~1403-5a647]:main():gmm-gselect.cc:114) For 0'th file, average UBM likelihood over 2980 frames is -138.888
+LOG (gmm-gselect[5.4.168~1403-5a647]:main():gmm-gselect.cc:125) Done 1 files, 0 with errors, average UBM log-likelihood is -138.888 over 2980 frames.
+WARNING (fgmm-gselect[5.4.168~1403-5a647]:GaussianSelectionPreselect():full-gmm.cc:684) Preselect size is less or equal to than final size, doing nothing: 20 < 20 [won't warn again]
+LOG (fgmm-gselect[5.4.168~1403-5a647]:main():fgmm-gselect.cc:114) For 0'th file, average UBM likelihood over 2980 frames is -133.1
+LOG (fgmm-gselect[5.4.168~1403-5a647]:main():fgmm-gselect.cc:125) Done 1 files, 0 with errors, average UBM log-likelihood is -133.1 over 2980 frames.
+# Accounting: time=1 threads=1
+# Ended (code 0) at Sun Dec 15 18:37:12 UTC 2019, elapsed time 1 seconds

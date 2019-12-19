@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "version": "0.0.11"
+  },
+  "@type": "AudioFile",
+  "speakers": [
+    {
+      "@id": "S0",
+      "gender": "M"
+    }
+  ],
+  "segments": [
+    {
+      "@type": "Segment",
+      "start": 0.0,
+      "duration": 11.74,
+      "bandwidth": "S",
+      "speaker": {
+        "@id": "S0",
+        "gender": "M"
+      }
+    },
+    {
+      "@type": "Segment",
+      "start": 11.95,
+      "duration": 6.94,
+      "bandwidth": "S",
+      "speaker": {
+        "@id": "S0",
+        "gender": "M"
+      }
+    }
+  ]
+}
