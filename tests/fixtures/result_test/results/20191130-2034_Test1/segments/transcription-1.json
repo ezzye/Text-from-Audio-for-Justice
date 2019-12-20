@@ -1,1 +1,58 @@
-{"metadata":{"version":"0.0.11"},"text":"five seven eight nine ten eleven twelve","punct":"five. Seven. Eight. Nine. Ten. Eleven. Twelve.","words":[{"start":4.83,"confidence":0.65,"end":5.25,"word":"five","punct":"five."},{"start":5.65,"confidence":0.99,"end":6.26,"word":"seven","punct":"Seven."},{"start":6.67,"confidence":1.0,"end":7.21,"word":"eight","punct":"Eight."},{"start":7.47,"confidence":1.0,"end":8.05,"word":"nine","punct":"Nine."},{"start":8.42,"confidence":1.0,"end":8.92,"word":"ten","punct":"Ten."},{"start":9.23,"confidence":1.0,"end":9.82,"word":"eleven","punct":"Eleven."},{"start":10.09,"confidence":1.0,"end":10.74,"word":"twelve","punct":"Twelve."}]}
+{
+  "metadata": {
+    "version": "0.0.11"
+  },
+  "text": "five seven eight nine ten eleven twelve",
+  "punct": "five. Seven. Eight. Nine. Ten. Eleven. Twelve.",
+  "words": [
+    {
+      "start": 4.83,
+      "confidence": 0.65,
+      "end": 5.25,
+      "word": "five",
+      "punct": "five."
+    },
+    {
+      "start": 5.65,
+      "confidence": 0.99,
+      "end": 6.26,
+      "word": "seven",
+      "punct": "Seven."
+    },
+    {
+      "start": 6.67,
+      "confidence": 1.0,
+      "end": 7.21,
+      "word": "eight",
+      "punct": "Eight."
+    },
+    {
+      "start": 7.47,
+      "confidence": 1.0,
+      "end": 8.05,
+      "word": "nine",
+      "punct": "Nine."
+    },
+    {
+      "start": 8.42,
+      "confidence": 1.0,
+      "end": 8.92,
+      "word": "ten",
+      "punct": "Ten."
+    },
+    {
+      "start": 9.23,
+      "confidence": 1.0,
+      "end": 9.82,
+      "word": "eleven",
+      "punct": "Eleven."
+    },
+    {
+      "start": 10.09,
+      "confidence": 1.0,
+      "end": 10.74,
+      "word": "twelve",
+      "punct": "Twelve."
+    }
+  ]
+}

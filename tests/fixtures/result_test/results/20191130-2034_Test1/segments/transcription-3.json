@@ -1,1 +1,58 @@
-{"metadata":{"version":"0.0.11"},"text":"thirty that's the end of the test","punct":"thirty. That's the end of the test.","words":[{"start":27.33,"confidence":1.0,"end":28.2,"word":"thirty","punct":"thirty."},{"start":28.32,"confidence":1.0,"end":28.68,"word":"that's","punct":"That's"},{"start":28.68,"confidence":1.0,"end":28.82,"word":"the","punct":"the"},{"start":28.82,"confidence":1.0,"end":29.01,"word":"end","punct":"end"},{"start":29.01,"confidence":1.0,"end":29.09,"word":"of","punct":"of"},{"start":29.09,"confidence":1.0,"end":29.22,"word":"the","punct":"the"},{"start":29.22,"confidence":1.0,"end":29.76,"word":"test","punct":"test."}]}
+{
+  "metadata": {
+    "version": "0.0.11"
+  },
+  "text": "thirty that's the end of the test",
+  "punct": "thirty. That's the end of the test.",
+  "words": [
+    {
+      "start": 27.33,
+      "confidence": 1.0,
+      "end": 28.2,
+      "word": "thirty",
+      "punct": "thirty."
+    },
+    {
+      "start": 28.32,
+      "confidence": 1.0,
+      "end": 28.68,
+      "word": "that's",
+      "punct": "That's"
+    },
+    {
+      "start": 28.68,
+      "confidence": 1.0,
+      "end": 28.82,
+      "word": "the",
+      "punct": "the"
+    },
+    {
+      "start": 28.82,
+      "confidence": 1.0,
+      "end": 29.01,
+      "word": "end",
+      "punct": "end"
+    },
+    {
+      "start": 29.01,
+      "confidence": 1.0,
+      "end": 29.09,
+      "word": "of",
+      "punct": "of"
+    },
+    {
+      "start": 29.09,
+      "confidence": 1.0,
+      "end": 29.22,
+      "word": "the",
+      "punct": "the"
+    },
+    {
+      "start": 29.22,
+      "confidence": 1.0,
+      "end": 29.76,
+      "word": "test",
+      "punct": "test."
+    }
+  ]
+}

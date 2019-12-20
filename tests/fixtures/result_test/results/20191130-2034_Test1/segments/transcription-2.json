@@ -1,1 +1,191 @@
-{"metadata":{"version":"0.0.11"},"text":"thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twenty one twenty two twenty three twenty four twenty five twenty six twenty seven twenty eight twenty nine","punct":"Thirteen. Fourteen. Fifteen. Sixteen. Seventeen. Eighteen. Nineteen. Twenty. Twenty one twenty two twenty three, twenty four twenty five twenty six twenty seven twenty eight twenty nine","words":[{"start":10.97,"confidence":1.0,"end":11.66,"word":"thirteen","punct":"Thirteen."},{"start":11.76,"confidence":1.0,"end":12.54,"word":"fourteen","punct":"Fourteen."},{"start":12.74,"confidence":1.0,"end":13.43,"word":"fifteen","punct":"Fifteen."},{"start":13.6,"confidence":1.0,"end":14.34,"word":"sixteen","punct":"Sixteen."},{"start":14.5,"confidence":1.0,"end":15.3,"word":"seventeen","punct":"Seventeen."},{"start":15.51,"confidence":1.0,"end":16.17,"word":"eighteen","punct":"Eighteen."},{"start":16.41,"confidence":1.0,"end":17.15,"word":"nineteen","punct":"Nineteen."},{"start":17.24,"confidence":1.0,"end":17.86,"word":"twenty","punct":"Twenty."},{"start":18.16,"confidence":1.0,"end":18.38,"word":"twenty","punct":"Twenty"},{"start":18.38,"confidence":1.0,"end":18.78,"word":"one","punct":"one"},{"start":19.11,"confidence":1.0,"end":19.33,"word":"twenty","punct":"twenty"},{"start":19.33,"confidence":1.0,"end":19.77,"word":"two","punct":"two"},{"start":20.01,"confidence":1.0,"end":20.26,"word":"twenty","punct":"twenty"},{"start":20.26,"confidence":1.0,"end":20.79,"word":"three","punct":"three,"},{"start":21.01,"confidence":1.0,"end":21.28,"word":"twenty","punct":"twenty"},{"start":21.28,"confidence":1.0,"end":21.79,"word":"four","punct":"four"},{"start":22.06,"confidence":1.0,"end":22.31,"word":"twenty","punct":"twenty"},{"start":22.31,"confidence":1.0,"end":22.83,"word":"five","punct":"five"},{"start":23.1,"confidence":1.0,"end":23.35,"word":"twenty","punct":"twenty"},{"start":23.35,"confidence":1.0,"end":23.92,"word":"six","punct":"six"},{"start":24.13,"confidence":1.0,"end":24.37,"word":"twenty","punct":"twenty"},{"start":24.37,"confidence":1.0,"end":24.86,"word":"seven","punct":"seven"},{"start":25.1,"confidence":1.0,"end":25.44,"word":"twenty","punct":"twenty"},{"start":25.44,"confidence":1.0,"end":25.93,"word":"eight","punct":"eight"},{"start":26.11,"confidence":1.0,"end":26.37,"word":"twenty","punct":"twenty"},{"start":26.37,"confidence":1.0,"end":26.88,"word":"nine","punct":"nine"}]}
+{
+  "metadata": {
+    "version": "0.0.11"
+  },
+  "text": "thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twenty one twenty two twenty three twenty four twenty five twenty six twenty seven twenty eight twenty nine",
+  "punct": "Thirteen. Fourteen. Fifteen. Sixteen. Seventeen. Eighteen. Nineteen. Twenty. Twenty one twenty two twenty three, twenty four twenty five twenty six twenty seven twenty eight twenty nine",
+  "words": [
+    {
+      "start": 10.97,
+      "confidence": 1.0,
+      "end": 11.66,
+      "word": "thirteen",
+      "punct": "Thirteen."
+    },
+    {
+      "start": 11.76,
+      "confidence": 1.0,
+      "end": 12.54,
+      "word": "fourteen",
+      "punct": "Fourteen."
+    },
+    {
+      "start": 12.74,
+      "confidence": 1.0,
+      "end": 13.43,
+      "word": "fifteen",
+      "punct": "Fifteen."
+    },
+    {
+      "start": 13.6,
+      "confidence": 1.0,
+      "end": 14.34,
+      "word": "sixteen",
+      "punct": "Sixteen."
+    },
+    {
+      "start": 14.5,
+      "confidence": 1.0,
+      "end": 15.3,
+      "word": "seventeen",
+      "punct": "Seventeen."
+    },
+    {
+      "start": 15.51,
+      "confidence": 1.0,
+      "end": 16.17,
+      "word": "eighteen",
+      "punct": "Eighteen."
+    },
+    {
+      "start": 16.41,
+      "confidence": 1.0,
+      "end": 17.15,
+      "word": "nineteen",
+      "punct": "Nineteen."
+    },
+    {
+      "start": 17.24,
+      "confidence": 1.0,
+      "end": 17.86,
+      "word": "twenty",
+      "punct": "Twenty."
+    },
+    {
+      "start": 18.16,
+      "confidence": 1.0,
+      "end": 18.38,
+      "word": "twenty",
+      "punct": "Twenty"
+    },
+    {
+      "start": 18.38,
+      "confidence": 1.0,
+      "end": 18.78,
+      "word": "one",
+      "punct": "one"
+    },
+    {
+      "start": 19.11,
+      "confidence": 1.0,
+      "end": 19.33,
+      "word": "twenty",
+      "punct": "twenty"
+    },
+    {
+      "start": 19.33,
+      "confidence": 1.0,
+      "end": 19.77,
+      "word": "two",
+      "punct": "two"
+    },
+    {
+      "start": 20.01,
+      "confidence": 1.0,
+      "end": 20.26,
+      "word": "twenty",
+      "punct": "twenty"
+    },
+    {
+      "start": 20.26,
+      "confidence": 1.0,
+      "end": 20.79,
+      "word": "three",
+      "punct": "three,"
+    },
+    {
+      "start": 21.01,
+      "confidence": 1.0,
+      "end": 21.28,
+      "word": "twenty",
+      "punct": "twenty"
+    },
+    {
+      "start": 21.28,
+      "confidence": 1.0,
+      "end": 21.79,
+      "word": "four",
+      "punct": "four"
+    },
+    {
+      "start": 22.06,
+      "confidence": 1.0,
+      "end": 22.31,
+      "word": "twenty",
+      "punct": "twenty"
+    },
+    {
+      "start": 22.31,
+      "confidence": 1.0,
+      "end": 22.83,
+      "word": "five",
+      "punct": "five"
+    },
+    {
+      "start": 23.1,
+      "confidence": 1.0,
+      "end": 23.35,
+      "word": "twenty",
+      "punct": "twenty"
+    },
+    {
+      "start": 23.35,
+      "confidence": 1.0,
+      "end": 23.92,
+      "word": "six",
+      "punct": "six"
+    },
+    {
+      "start": 24.13,
+      "confidence": 1.0,
+      "end": 24.37,
+      "word": "twenty",
+      "punct": "twenty"
+    },
+    {
+      "start": 24.37,
+      "confidence": 1.0,
+      "end": 24.86,
+      "word": "seven",
+      "punct": "seven"
+    },
+    {
+      "start": 25.1,
+      "confidence": 1.0,
+      "end": 25.44,
+      "word": "twenty",
+      "punct": "twenty"
+    },
+    {
+      "start": 25.44,
+      "confidence": 1.0,
+      "end": 25.93,
+      "word": "eight",
+      "punct": "eight"
+    },
+    {
+      "start": 26.11,
+      "confidence": 1.0,
+      "end": 26.37,
+      "word": "twenty",
+      "punct": "twenty"
+    },
+    {
+      "start": 26.37,
+      "confidence": 1.0,
+      "end": 26.88,
+      "word": "nine",
+      "punct": "nine"
+    }
+  ]
+}
