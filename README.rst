@@ -19,8 +19,9 @@ Text-from-Audio-for-Justice
 
 Useful Links
 ------------
- * `Automating Noise Reduction for Audio Processing <https://www.youtube.com/watch?v=f9P7SeUlzQg>`_
+ * `Automating Noise Reduction for Audio Processing, video <https://www.youtube.com/watch?v=f9P7SeUlzQg>`_
  * `Audacity <https://www.audacityteam.org/about/features/>`_
+ * `How to clean up digital recordings using Audacity <https://opensource.com/life/14/10/how-clean-digital-recordings-using-audacity>`_
 
  * `Quick reStructuredText <https://docutils.sourceforge.io/docs/user/rst/quickref.html>`_
  * `rst-cheatsheet <https://github.com/ralsina/rst-cheatsheet/blob/master/rst-cheatsheet.rst>`_
@@ -41,3 +42,40 @@ Useful Links
  * `FFmpeg  <https://ffmpeg.org/ffmpeg.html>`_
  * `How do I split an audio file into multiple?  <https://unix.stackexchange.com/questions/280767/how-do-i-split-an-audio-file-into-multiple>`_
 
+Tools
+-----
+taj transcribe
+        --audio_input_folder (original recording(s))
+        --chunk_output_folder
+Output:
+        wav.scp: chunk file paths (files extracted from segments)
+        text: (line for each chunk)
+        segments: (links text to chunk file and start and end time)
+        utt2spk: (links speaker and text)
+        spk2utt: (normalised lookup)
+
+ **Separate transcription in output folder for each original audio file**
+
+taj chunk_speaker
+        --audio_input_folder (original recording(s))
+        --transcription_folder
+        --audio_output_folder
+
+ **Separate transcription in output folder for each original audio file**
+
+taj clean_up
+        --audio_input_folder (original recording)
+        --audio_output_folder
+
+taj convert
+        --type (either rts, pdf, doc)
+        --online_folder (url of online folder)
+
+taj create_test_data
+    --input_folder
+    --output_folder
+    --audio_input_folder (original recording(s))
+
+taj retrain
+    --input_folder
+    --audio_input_folder (original recording(s))
