@@ -46,7 +46,7 @@ Tools
 -----
 taj transcribe
         --audio_input_folder (original recording(s))
-        --chunk_output_folder
+        --output_folder
 Output:
         wav.scp: chunk file paths (files extracted from segments)
         text: (line for each chunk)

@@ -1,16 +1,17 @@
-from builder import ChunkBuilder
 from exceptions import InputError
 from argparser import parse_args
+from transcriber import Transcriber
 
 
 def main():
     args = parse_args()
-    builder = ChunkBuilder()
+    transcribe = Transcriber()
     try:
-        builder.compose(args.mode, args.transcript, args.audio_source,
-                        args.markup_file, args.split_sentences, args.audio_output,
-                        args.doc_output, args.validate, args.audio_output_chunks,
-                        args.word_output_file, args.online_folder, args.doc_output)
+        if args.mode == 'transcribe':
+            transcribe.transcribe(
+                args.input_folder,
+                args.output_folder
+            )
     except InputError as e:
         print(f'{InputError.__name__}:\n\t{e}')
 

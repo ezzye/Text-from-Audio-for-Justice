@@ -2,7 +2,7 @@ import os
 import unittest
 from builder import ChunkBuilder, load_file, load_json
 from exceptions import InputError
-from utils import load_document, load_fixture
+from utils import load_document_rel, load_fixture_rel
 
 
 class TestChunkBuilder(unittest.TestCase):
@@ -99,14 +99,14 @@ class TestChunkBuilder(unittest.TestCase):
         #         print("File does not exist")
 
         markedup_taj_file = load_document('test2.taj')
-        transcription = load_fixture('transcription.json')
+        transcription = load_fixture_rel('transcription.json')
         chunk_phrase = chunk_build.compile_chunk_phrases(transcription, markedup_taj_file, audio_output_path)
         time_code_and_outputs = chunk_build.compile_ffmpeg_cli(chunk_phrase, audio_source)
         chunk_build.build(time_code_and_outputs)
 
     def test_auto_make_markedup(self):
         builder = ChunkBuilder()
-        transcription = load_fixture('kaldi_small_doc.json')
+        transcription = load_fixture_rel('kaldi_small_doc.json')
         expected = "Oh.| And A A over"
         path = 'fixtures/auto_markup.taj'
         builder.make_markup_file(transcription, path)
@@ -116,14 +116,14 @@ class TestChunkBuilder(unittest.TestCase):
 
     def test_extract_markup_from_transcript(self):
         builder = ChunkBuilder()
-        transcription = load_fixture('transcription.json')
+        transcription = load_fixture_rel('transcription.json')
         path = 'fixtures/extracted_markup.taj'
         path = builder.extract_markup_file(transcription, path)
         self.assertTrue(os.path.exists(path))
 
     def test_compile_chunk_phrase(self):
         builder = ChunkBuilder()
-        transcription = load_fixture('kaldi_small_doc.json')
+        transcription = load_fixture_rel('kaldi_small_doc.json')
         path = 'fixtures/test_markup.taj'
         markedup_taj_file = builder.make_markup_file(transcription, path)
         audio_output_path = 'fixtures/chunk_test'
@@ -133,7 +133,7 @@ class TestChunkBuilder(unittest.TestCase):
 
     def test_compile_chunk_phrase_bigger_file(self):
         builder = ChunkBuilder()
-        transcription = load_fixture('transcription.json')
+        transcription = load_fixture_rel('transcription.json')
         markedup_taj_file = load_document('test2.taj')
         audio_output_path = 'fixtures/chunk'
         expected = [
@@ -147,7 +147,7 @@ class TestChunkBuilder(unittest.TestCase):
 
     def test_compile_chunk_phrase_bigger_file2(self):
         builder = ChunkBuilder()
-        transcription = load_fixture('transcription2.json')
+        transcription = load_fixture_rel('transcription2.json')
         markedup_taj_file = load_document('test3.taj')
         audio_output_path = 'fixtures/test3_chunk'
         expected = [{'end': 1.28, 'name': 'fixtures/test3_chunk1', 'start': 0.14},
