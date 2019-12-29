@@ -51,14 +51,12 @@ Output:
         wav.scp: chunk file paths (files extracted from segments)
         text: (line for each chunk)
         segments: (links text to chunk file and start and end time)
-        utt2spk: (links speaker and text)
-        spk2utt: (normalised lookup)
 
  **Separate transcription in output folder for each original audio file**
 
 taj chunk_speaker
-        --audio_input_folder (original recording(s))
-        --transcription_folder
+        --audio_input_path
+        --speech_segmentation_path
         --audio_output_folder
 
  **Separate transcription in output folder for each original audio file**

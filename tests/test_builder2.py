@@ -1,5 +1,7 @@
+import glob
 import unittest
 
+from chunk_speaker import ChunkSpeaker
 from transcriber import Transcriber
 from utils import load_fixture_rel, load_document_rel
 
@@ -30,6 +32,17 @@ class MyTestCase(unittest.TestCase):
     def validate_json(self, json_items, expected_json_items):
         for index, item in enumerate(json_items['words']):
             self.assertEqual(item, expected_json_items['words'][index])
+
+    def test_chunk_speaker(self):
+        chunker = ChunkSpeaker()
+        audio_input_path = 'input1/20191130-2034_Test1.wav'
+        output_folder = 'output_spk1'
+        speech_segmentation_path = 'output1/results/20191130-2034_Test1/segmentation.json'
+        chunker.chunk(audio_input_path, speech_segmentation_path, output_folder)
+        expected_files = glob.glob(f'{output_folder}/20191130-2034_Test1/20191130-2034_Test1*.wav')
+        self.assertEqual(len(expected_files), 4)
+
+
 
 
 if __name__ == '__main__':
