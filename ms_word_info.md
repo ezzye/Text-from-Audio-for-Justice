@@ -16,4 +16,15 @@ python taj chunk --audio_source examples/20191130-2034_Test1.wav \
                  --markup_file  examples/auto_markup_split.taj \
                  --audio_output examples/chunk_exp
 ```
+pipenv run python taj transcribe --input_folder example2 \
+                      --output_folder example2/ouptput_normalised
+                      
+pipenv run python taj chunk_speaker --audio_input_path example2/20191113-1000_Gareth_131119_norm.wav \
+                                    --speech_segmentation_path example2/ouptput_normalised/results/20191113-1000_Gareth_131119_norm/segmentation.json \
+                                    --output_folder example2/output_speech
+                                    
 
+pipenv run python taj transcribe --input_folder example2/output_speech/sample \
+                      --output_folder example2/ouptput_by_speaker                                    
+                      
+                        

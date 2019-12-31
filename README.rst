@@ -57,7 +57,7 @@ Output:
 taj chunk_speaker
         --audio_input_path
         --speech_segmentation_path
-        --audio_output_folder
+        --output_folder
 
  **Separate transcription in output folder for each original audio file**
 
