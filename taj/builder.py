@@ -145,14 +145,20 @@ class ChunkBuilder(object):
 
     def transcribe_audio(self, audio_source, doc_output):
         current_working_dir = os.getcwd()
-        audio_file_name = audio_source.split("/")[-1].split(".")[0]
-        transcription_output_path = f'{doc_output}/results/{audio_file_name}/transcription.json'
+        audio_file_name = self.make_file_name(audio_source)
         instruction = f'docker run --rm  -v "{current_working_dir}:/tmp/media" --name bbc-kaldi-container  artifactory-noforge.virt.ch.bbc.co.uk:8443/bbc-kaldi:0.0.11 bbc-kaldi /tmp/media/{audio_source} /tmp/media/{doc_output}'
+        transcription_output_path = f'{doc_output}/results/{audio_file_name}/transcription.json'
         options = shlex.split(instruction)
+        print(f'{options}')
         if not os.path.exists(transcription_output_path):
             print(f'Making transcript....................................................................')
             subprocess.call(options)
         return transcription_output_path
+
+    def make_file_name(self, audio_source):
+        audio_file_name_full = audio_source.split("/")[-1]
+        audio_file_name = ".".join(audio_file_name_full.split(".")[:-1])
+        return audio_file_name
 
     def make_markup_file(self, transcription, path):
         punct = transcription["punct"]

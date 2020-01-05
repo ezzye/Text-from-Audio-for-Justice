@@ -42,6 +42,14 @@ class MyTestCase(unittest.TestCase):
         expected_files = glob.glob(f'{output_folder}/20191130-2034_Test1/20191130-2034_Test1*.wav')
         self.assertEqual(len(expected_files), 4)
 
+    def test_transcribe_new_more_than_one_audio_file(self):
+        print(f'running______________......................................')
+        transcriber = Transcriber()
+        audio_input_folder = 'input3'
+        output_folder = 'output3'
+        transcriber.transcribe(audio_input_folder, output_folder)
+        self.assertEqual(1, 1)
+
 
 
 

@@ -17,7 +17,7 @@ class Transcriber(object):
             output_folder = f'{output_folder.split("_")[0]}_{index}'
 
     def chunk_file(self, audio_source, output):
-        filename_in = audio_source.split("/")[-1].split(".")[0]
+        filename_in = builder.make_file_name(audio_source)
         json_segments_path = f'{output}/results/{filename_in}/segments'
         output_path = f'{output}/{filename_in}'
         if not os.path.exists(output_path):
@@ -54,7 +54,7 @@ class Transcriber(object):
     def chunk_audio_file(self, audio_source, output, start_end):
         start, end = start_end
         file_name_ext = audio_source.split(".")[-1]
-        filename_in = audio_source.split("/")[-1].split(".")[0]
+        filename_in = builder.make_file_name(audio_source)
         file_path = f'{output}/{filename_in}/{filename_in}_{start}_{end}.{file_name_ext}'
         ffmpeg_cli = f'ffmpeg -i {audio_source} -ss {start} -to {end} -c copy -y {file_path}'
         builder.build([ffmpeg_cli])
@@ -62,4 +62,6 @@ class Transcriber(object):
 
     def write_to_file(self, path, content):
         with open(path, "w", encoding='utf-8') as fp:
-            fp.write(''.join(content))
+            content_output = ''.join(content)
+            print(f'..........writing path: {path} with content:  {content_output}..........')
+            fp.write(content_output)

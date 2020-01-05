@@ -42,6 +42,16 @@ Useful Links
  * `FFmpeg  <https://ffmpeg.org/ffmpeg.html>`_
  * `How do I split an audio file into multiple?  <https://unix.stackexchange.com/questions/280767/how-do-i-split-an-audio-file-into-multiple>`_
 
+Getting Started
+---------------
+ * Install ffmpeg
+ * Install docker if not already installed
+ * Download Kaldi docker image (message/email for link)
+ * Docker load image
+ * List docker images and containers
+ * Give docker maximum resources to run
+ * Run taj
+
 Tools
 -----
 taj transcribe
