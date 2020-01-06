@@ -54,36 +54,36 @@ Getting Started
 
 Tools
 -----
-taj transcribe
-        --audio_input_folder (original recording(s))
+::
+
+    taj transcribe
+        --audio_input_folder
         --output_folder
-Output:
+
+    With:
         wav.scp: chunk file paths (files extracted from segments)
         text: (line for each chunk)
         segments: (links text to chunk file and start and end time)
 
- **Separate transcription in output folder for each original audio file**
-
-taj chunk_speaker
+    taj chunk_speaker
         --audio_input_path
         --speech_segmentation_path
         --output_folder
 
- **Separate transcription in output folder for each original audio file**
-
-taj clean_up
+    taj clean_up
         --audio_input_folder (original recording)
         --audio_output_folder
 
-taj convert
+    taj convert
         --type (either rts, pdf, doc)
         --online_folder (url of online folder)
+        --audio_input_path
 
-taj create_test_data
-    --input_folder
-    --output_folder
-    --audio_input_folder (original recording(s))
+    taj create_test_data
+        --input_folder
+        --output_folder
+        --audio_input_folder (original recording(s))
 
-taj retrain
-    --input_folder
-    --audio_input_folder (original recording(s))
+    taj retrain
+        --input_folder
+        --audio_input_folder (original recording(s))
