@@ -7,48 +7,48 @@ import docx
 from exceptions import InputError
 
 
-def add_hyperlink(paragraph, text, url):
-    """
-    :param paragraph: The paragraph we are adding the hyperlink to.
-    :param url: A string containing the required url
-    :param text: The text displayed for the url
-    :return: The hyperlink object
-    """
-    # This gets access to the document.xml.rels file and gets a new relation id value
-    part = paragraph.part
-    r_id = part.relate_to(url, docx.opc.constants.RELATIONSHIP_TYPE.HYPERLINK, is_external=True)
-    # Create the w:hyperlink tag and add needed values
-    hyperlink = docx.oxml.shared.OxmlElement('w:hyperlink')
-    hyperlink.set(docx.oxml.shared.qn('r:id'), r_id, )
-    # Create a w:r element and a new w:rPr element
-    new_run = docx.oxml.shared.OxmlElement('w:r')
-    rPr = docx.oxml.shared.OxmlElement('w:rPr')
-    # Join all the xml elements together add add the required text to the w:r element
-    new_run.append(rPr)
-    new_run.text = text
-    hyperlink.append(new_run)
-    # Create a new Run object and add the hyperlink into it
-    r = paragraph.add_run()
-    r._r.append(hyperlink)
-    return hyperlink
+# def add_hyperlink(paragraph, text, url):
+#     """
+#     :param paragraph: The paragraph we are adding the hyperlink to.
+#     :param url: A string containing the required url
+#     :param text: The text displayed for the url
+#     :return: The hyperlink object
+#     """
+#     # This gets access to the document.xml.rels file and gets a new relation id value
+#     part = paragraph.part
+#     r_id = part.relate_to(url, docx.opc.constants.RELATIONSHIP_TYPE.HYPERLINK, is_external=True)
+#     # Create the w:hyperlink tag and add needed values
+#     hyperlink = docx.oxml.shared.OxmlElement('w:hyperlink')
+#     hyperlink.set(docx.oxml.shared.qn('r:id'), r_id, )
+#     # Create a w:r element and a new w:rPr element
+#     new_run = docx.oxml.shared.OxmlElement('w:r')
+#     rPr = docx.oxml.shared.OxmlElement('w:rPr')
+#     # Join all the xml elements together add add the required text to the w:r element
+#     new_run.append(rPr)
+#     new_run.text = text
+#     hyperlink.append(new_run)
+#     # Create a new Run object and add the hyperlink into it
+#     r = paragraph.add_run()
+#     r._r.append(hyperlink)
+#     return hyperlink
 
 
 class ChunkBuilder(object):
-    def compose(self, mode, transcript, audio_source,
-                markup_file, split_sentences, audio_output,
-                transcription_output, validate, audio_output_chunks,
-                word_output_file, online_folder, doc_output):
-        if mode == 'make_markup':
-            self.make_markup(transcript, markup_file, split_sentences)
-        if mode == 'chunk':
-            self.chunk(audio_source, transcript, markup_file, audio_output)
-        if mode == 'transcribe':
-            self.transcribe_audio(audio_source, doc_output)
-        if mode == 'word':
-            self.word(audio_output_chunks, word_output_file, online_folder, markup_file)
-        if mode == 'batch':
-            self.batch(audio_source, word_output_file, transcription_output, online_folder,
-                       markup_file, split_sentences, audio_output, doc_output)
+    # def compose(self, mode, transcript, audio_source,
+    #             markup_file, split_sentences, audio_output,
+    #             transcription_output, validate, audio_output_chunks,
+    #             word_output_file, online_folder, doc_output):
+    #     if mode == 'make_markup':
+    #         self.make_markup(transcript, markup_file, split_sentences)
+    #     if mode == 'chunk':
+    #         self.chunk(audio_source, transcript, markup_file, audio_output)
+    #     if mode == 'transcribe':
+    #         self.transcribe_audio(audio_source, doc_output)
+    #     if mode == 'word':
+    #         self.word(audio_output_chunks, word_output_file, online_folder, markup_file)
+    #     if mode == 'batch':
+    #         self.batch(audio_source, word_output_file, transcription_output, online_folder,
+    #                    markup_file, split_sentences, audio_output, doc_output)
 
     def build(self, ffmpeg_cli):
         for ffmpeg_cli_item in ffmpeg_cli:
@@ -75,19 +75,19 @@ class ChunkBuilder(object):
         print(f'Word file can be found here: {word_output_file}')
         return word_output_file
 
-    def word(self, audio_output_chunks, word_output_file, online_folder, markup_file):
-        document = docx.Document()
-        name_of_chunk = audio_output_chunks.split("/")[-1]
-        markup_file_text = load_file(markup_file)
-        phrase_list = []
-        for phrase in markup_file_text.split("|"):
-            if len(phrase) > 0:
-                phrase_list.append(phrase)
-        for index, phrase in enumerate(phrase_list):
-            p = document.add_paragraph(phrase)
-            add_hyperlink(p, f'[{index + 1}]  ', f'{online_folder}{name_of_chunk}{index + 1}.mp3')
-        document.save(word_output_file)
-        return word_output_file
+    # def word(self, audio_output_chunks, word_output_file, online_folder, markup_file):
+    #     document = docx.Document()
+    #     name_of_chunk = audio_output_chunks.split("/")[-1]
+    #     markup_file_text = load_file(markup_file)
+    #     phrase_list = []
+    #     for phrase in markup_file_text.split("|"):
+    #         if len(phrase) > 0:
+    #             phrase_list.append(phrase)
+    #     for index, phrase in enumerate(phrase_list):
+    #         p = document.add_paragraph(phrase)
+    #         add_hyperlink(p, f'[{index + 1}]  ', f'{online_folder}{name_of_chunk}{index + 1}.mp3')
+    #     document.save(word_output_file)
+    #     return word_output_file
 
     def make_markup(self, transcription_path, path_man, path_auto):
         transcript = load_json(transcription_path)

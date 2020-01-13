@@ -6,8 +6,8 @@ def parse_args():
     parser.add_argument(
         'mode',
         type=str,
-        choices=('transcribe', 'chunk_speaker'),
-        help='the mode of operation: \n\t{\'batch\', \'transcribe\', \'chunk_speaker\', \'make_markup\', \'batch\'}'
+        choices=('transcribe', 'chunk_speaker', 'convert'),
+        help='the mode of operation: \n\t{\'transcribe\', \'chunk_speaker\', \'convert\'}'
     )
     parser.add_argument(
         '--input_folder',
@@ -33,4 +33,23 @@ def parse_args():
         type=str,
         help='path to the audio file',
         default='')
+    parser.add_argument(
+        '--type',
+        '-t',
+        type=str,
+        help='path to the audio file',
+        default='')
+    parser.add_argument(
+        '--online_folder',
+        '-f',
+        type=str,
+        help='path to the audio file',
+        default='')
+    parser.add_argument(
+        '--chunks_text_path',
+        '-c',
+        type=str,
+        help='path to the audio file',
+        default='')
     return parser.parse_args()
+

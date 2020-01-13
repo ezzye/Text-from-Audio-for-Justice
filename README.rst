@@ -77,7 +77,8 @@ Tools
     taj convert
         --type (either rts, pdf, doc)
         --online_folder (url of online folder)
-        --audio_input_path
+        --chunks_text_path
+        --output_folder
 
     taj create_test_data
         --input_folder
@@ -87,3 +88,7 @@ Tools
     taj retrain
         --input_folder
         --audio_input_folder (original recording(s))
+
+
+
+

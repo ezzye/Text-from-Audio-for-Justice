@@ -28,3 +28,7 @@ pipenv run python taj transcribe --input_folder example2/output_speech/sample \
                       --output_folder example2/ouptput_by_speaker                                    
                       
                         
+pipenv run python taj convert --type word \
+                              --online_folder https://garethmeeting.s3-eu-west-1.amazonaws.com \
+                              --chunks_text_path example2/ouptput_normalised/20191113-1000_Gareth_131119_norm \
+                              --output_folder example2/gareth_normalised_output

@@ -1,7 +1,9 @@
 import glob
+import os
 import unittest
 
 from chunk_speaker import ChunkSpeaker
+from converter import Converter
 from transcriber import Transcriber
 from utils import load_fixture_rel, load_document_rel
 
@@ -50,9 +52,17 @@ class MyTestCase(unittest.TestCase):
         transcriber.transcribe(audio_input_folder, output_folder)
         self.assertEqual(1, 1)
 
+    def test_convert_to_word_document(self):
+        converter = Converter()
+        type = 'word'
+        online_folder = 'https://testconvert2.s3-eu-west-1.amazonaws.com'
+        chunks_text_path = 'output1/20191130-2034_Test1'
+        output_folder = 'output1/files'
 
+        expected_output_path = 'output1/files/20191130-2034_Test1.doc'
+        converter.convert(type, online_folder, chunks_text_path, output_folder)
+        self.assertTrue(os.path.exists(expected_output_path))
 
 
 if __name__ == '__main__':
     unittest.main()
-

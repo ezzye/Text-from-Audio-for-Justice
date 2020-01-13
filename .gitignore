@@ -1,4 +1,9 @@
 /example2/
 /examples/
+/output**/
+/tests/output**/
 /output.doc/
-/output.doc/
+/tests/output1/
+/tests/output3/
+/tests/output3_0/
+/tests/output_spk1/
