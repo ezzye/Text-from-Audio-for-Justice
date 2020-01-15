@@ -26,7 +26,9 @@ class Transcriber(object):
         segments_path = f'{output}/{filename_in}/segments'
         wav_scp_path = f'{output}/{filename_in}/wav.scp'
         text_list, segments_list, wav_scp_list = [], [], []
-        segment_files = sorted(glob.glob(f'{json_segments_path}/*.json'))
+        segment_files = sorted(
+            glob.glob(f'{json_segments_path}/*.json'), key=lambda x: int(x.split(".")[0].split("-")[-1])
+        )
         for index, item in enumerate(segment_files):
             with open(item, "r", encoding='utf-8') as fp:
                 transcription = json.load(fp)
